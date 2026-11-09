@@ -1,0 +1,257 @@
+{
+  "schema": "Sophon095-current-native-tiny-CPU-qualification-summary-v1",
+  "date_UTC": "2026-11-09",
+  "status": "passed_for_declared_CPU_scope",
+  "product_source_commit": "175edeeade49f1e4044dc76f6a7f156cb1928482",
+  "shared_core_commit": "41f6066f2d2644902670d5eb736de052e1a70553",
+  "official_Sophon_commit": "67fe6cfc02616cec5a5a883b063bdefd7b31fc2b",
+  "ParticleGAN": "0.9.5",
+  "new_cohort_profile": "sophon-current-core-pg095-fresh-scoped-init-v1",
+  "counts": {
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "elapsed_pytest_seconds": 11.105,
+  "test_names": [
+    "test_actual_current_core_source_identity",
+    "test_exact_common_literals_and_refusals",
+    "test_new_fresh_full_resume_raw_and_initializer_boundary",
+    "test_missing_intent_and_legacy_packet_refuse_before_allocation",
+    "test_actual_official_tiny_audio_conditioned_greedy_text",
+    "test_official_audio_merge_hidden_equivalence_and_native_gradients",
+    "test_official_processor_chunk_counts",
+    "test_offline_native_base_tag_loader[float32]",
+    "test_offline_native_base_tag_loader[bfloat16]"
+  ],
+  "runtime_versions": {
+    "accelerate": "1.15.0",
+    "audioread": "3.1.0",
+    "filelock": "4.2.0",
+    "fsspec": "2026.9.0",
+    "hndl": "0.10.0",
+    "hypergan": "2.0.0",
+    "iniconfig": "2.3.1",
+    "jinja2": "3.1.6",
+    "librosa": "0.11.0",
+    "markupsafe": "3.0.4",
+    "mpmath": "1.3.0",
+    "networkx": "3.7",
+    "numpy": "2.2.6",
+    "nvidia-cublas-cu12": "12.8.4.1",
+    "nvidia-cuda-cupti-cu12": "12.8.90",
+    "nvidia-cuda-nvrtc-cu12": "12.8.93",
+    "nvidia-cuda-runtime-cu12": "12.8.90",
+    "nvidia-cudnn-cu12": "9.10.2.21",
+    "nvidia-cufft-cu12": "11.3.3.83",
+    "nvidia-cufile-cu12": "1.13.1.3",
+    "nvidia-curand-cu12": "10.3.9.90",
+    "nvidia-cusolver-cu12": "11.7.3.90",
+    "nvidia-cusparse-cu12": "12.5.8.93",
+    "nvidia-cusparselt-cu12": "0.7.1",
+    "nvidia-nccl-cu12": "2.27.5",
+    "nvidia-nvjitlink-cu12": "12.8.93",
+    "nvidia-nvshmem-cu12": "3.3.20",
+    "nvidia-nvtx-cu12": "12.8.90",
+    "packaging": "26.3",
+    "particle-sliders-core": "0.14.1",
+    "particlegan": "0.9.5",
+    "peft": "0.20.0",
+    "pillow": "13.0.0",
+    "pluggy": "1.7.0",
+    "pygments": "2.21.0",
+    "pytest": "8.4.2",
+    "safetensors": "0.8.0",
+    "soundfile": "0.14.0",
+    "soxr": "1.1.0",
+    "sympy": "1.14.0",
+    "tokenizers": "0.22.2",
+    "torch": "2.9.1",
+    "transformers": "4.57.6",
+    "triton": "3.5.1",
+    "typing-extensions": "4.16.0"
+  },
+  "source_pins": {
+    "particle-sliders-core": {
+      "subdirectory": "packages/particle-sliders-core",
+      "url": "https://github.com/HyperGAN/particle-sliders.git",
+      "vcs_info": {
+        "commit_id": "41f6066f2d2644902670d5eb736de052e1a70553",
+        "requested_revision": "41f6066f2d2644902670d5eb736de052e1a70553",
+        "vcs": "git"
+      }
+    },
+    "hypergan": {
+      "url": "https://github.com/HyperGAN/HyperGAN.git",
+      "vcs_info": {
+        "commit_id": "5f368a3770cf5bdae0448995c9f76e29af8049f7",
+        "requested_revision": "5f368a3770cf5bdae0448995c9f76e29af8049f7",
+        "vcs": "git"
+      }
+    }
+  },
+  "execution": {
+    "kind": "Actual operator-owned local CPU qualification, not public CI",
+    "pip_check_exit_code": 0,
+    "pytest_exit_code": 0,
+    "outer_exit_code": 0,
+    "actual_outer_reaped": true,
+    "only_owned_CPU8_role_released": true,
+    "CUDA_initialized": false,
+    "blocked_network_or_external_pretrained_attempts": 0,
+    "external_pretrained_model_consumed": false,
+    "allowed_loads": "Fresh random tiny fixtures and their converted local PEFT tag only"
+  },
+  "scope": {
+    "synthetic_host_FULL_resume_and_RAW": true,
+    "official_tiny_native_audio_conditioned_generation": true,
+    "official_tiny_gradients_and_processor": true,
+    "real_local_random_PEFT_tag_loader": [
+      "float32",
+      "bfloat16"
+    ],
+    "pretrained_32B": false,
+    "full_native_5120_training": false,
+    "GPU_placement_or_memory": false,
+    "pretrained_text_or_tag_quality": false,
+    "audio_synthesis": false,
+    "real_time_duplex": false,
+    "intended_effect_scores_or_LR_winner": false,
+    "catastrophic_failure_detector": false
+  },
+  "original_receipts": {
+    "terminal": {
+      "artifact": "Root-actual-CPU8-terminal-reap-resource0-v1.json",
+      "bytes": 14184,
+      "sha256": "760125bb9c597fc95f2f31b070b0ad970b92bda505922830ee0fa39cc0262ca7",
+      "availability": "Operator-retained execution evidence; not bundled publicly"
+    },
+    "phase_result": {
+      "artifact": "result.json",
+      "bytes": 5054,
+      "sha256": "271b551ce800040483e541fc5e9edd96b93adb21a5cc738bc7dd341c58687856",
+      "availability": "Operator-retained execution evidence; not bundled publicly"
+    },
+    "tiny_tests": {
+      "artifact": "tests-result.json",
+      "bytes": 3084,
+      "sha256": "16e555202d93a386a51fc39524e06954767c30b7f27a437820d5c2a892171def",
+      "availability": "Operator-retained execution evidence; not bundled publicly"
+    },
+    "junit": {
+      "artifact": "junit.xml",
+      "bytes": 1327,
+      "sha256": "df2e5ea97b793663edeb39a7adebe2257ad0c6a89c39dc75c7526e1e9f7441a6",
+      "availability": "Operator-retained execution evidence; not bundled publicly"
+    },
+    "pip_check_terminal": {
+      "artifact": "terminal.json",
+      "bytes": 516,
+      "sha256": "613f3748a961f420088f216901445e2f2f598dbc2d65020b7901efdd4be04e0d",
+      "availability": "Operator-retained execution evidence; not bundled publicly"
+    }
+  },
+  "historical_cohort_preserved": true,
+  "raw_no_model_weight_EMA": true,
+  "receipt_availability": "This portable summary is public. Original detailed run receipts are operator-retained and not included here; no public CI URL is claimed.",
+  "authenticated_product_sources": {
+    "core-current.lock.json": {
+      "bytes": 1089,
+      "sha256": "fbdca2a98f753c2cdd18e3b3f2fd33c67914e93b8bea588e402d30733879313b"
+    },
+    "examples/current-config.json": {
+      "bytes": 735,
+      "sha256": "277616c7c37b11a40dae044923cc6d95100b40e2bb5f6e729589a87c790b56c7"
+    },
+    "pyproject.toml": {
+      "bytes": 1248,
+      "sha256": "3fd6a54a59534720a03b7f94e6624e4ae16760e1c7385d767213a587c2e4a728"
+    },
+    "src/sophon_particle_sliders/__init__.py": {
+      "bytes": 111,
+      "sha256": "45180aea8ee5d5a474e02b519d8f0edb2cedca7f84e1286085e52c329c53c587"
+    },
+    "src/sophon_particle_sliders/backend.py": {
+      "bytes": 5083,
+      "sha256": "f2946f8c3556e6d8773657dabac5154b7cdc0f5f684048d6f5b354f8252a5a11"
+    },
+    "src/sophon_particle_sliders/current_backend.py": {
+      "bytes": 8902,
+      "sha256": "f4a0b078b06adf3780a10ee665cebbe1f6a0294f74e89cd9793129d2a07dc081"
+    },
+    "src/sophon_particle_sliders/current_cli.py": {
+      "bytes": 1606,
+      "sha256": "c8f6b18277ad488e9dcd9c61e30e625d41e74ba6984e41a4e61ee2f79502520b"
+    },
+    "src/sophon_particle_sliders/current_contract.py": {
+      "bytes": 4773,
+      "sha256": "cd03a88eb4fc7a740f427a1e687ef04abcd3f1e680a71e64d9862d83b76d4653"
+    },
+    "src/sophon_particle_sliders/current_core.json": {
+      "bytes": 1089,
+      "sha256": "fbdca2a98f753c2cdd18e3b3f2fd33c67914e93b8bea588e402d30733879313b"
+    },
+    "src/sophon_particle_sliders/data.py": {
+      "bytes": 4154,
+      "sha256": "ad31c0b13d342e495d415652df137a6bdf66026c9cee251e24b961ca7d31f55d"
+    },
+    "src/sophon_particle_sliders/finished_text.py": {
+      "bytes": 5532,
+      "sha256": "c0fbf98e5dd945f81bd4a7c4b8de1d6da52e7f3501fe7236f451942b1dbc82b9"
+    },
+    "src/sophon_particle_sliders/fresh_initialization.py": {
+      "bytes": 7520,
+      "sha256": "3e611c6df87bb9f2eab51aa07cf24e3af8aef4b1389aeaa02fe1cbabbdc7dd61"
+    },
+    "src/sophon_particle_sliders/native.py": {
+      "bytes": 4439,
+      "sha256": "db994a6fc8b294114b1bbf6ed7e905f51f1784d17d056223888186fee3c7f19d"
+    },
+    "src/sophon_particle_sliders/response.py": {
+      "bytes": 8525,
+      "sha256": "9340ce188dc8438421125040a148545cee122b67f3e0521805a3f4becdf0ff32"
+    },
+    "src/sophon_particle_sliders/slider.py": {
+      "bytes": 4163,
+      "sha256": "5ae08a429a8d4fce12f4a4bbe3b326cf52974068c9569d22e87ae5c854523640"
+    },
+    "src/sophon_particle_sliders/upstream.json": {
+      "bytes": 966,
+      "sha256": "0a208d5aa8207e6652708094a48f704c91e3be21b9d11519cbc3e3e5e27a252f"
+    },
+    "tests/conftest.py": {
+      "bytes": 4433,
+      "sha256": "7a3b4c4858ae7b1bffce60b5ad92bb7761b3b7e10bfed4baae1eb85bff50c4fc"
+    },
+    "tests/test_current_native_text.py": {
+      "bytes": 2575,
+      "sha256": "960c01323e74bb00ce23209098bf03b1c99b9277f8f6f2cce54998565ffc3e65"
+    },
+    "tests/test_current_profile.py": {
+      "bytes": 4159,
+      "sha256": "3dcbdf5c9a151566d8aa4db45b219c7251ebb28743926e83d82c1652fb4df1fb"
+    },
+    "tests/test_data.py": {
+      "bytes": 1952,
+      "sha256": "9d2125a1e25ec0f1f1843c98605ba00d8c1a5a59e954545efdaf73e9c1068eca"
+    },
+    "tests/test_lifecycle.py": {
+      "bytes": 4871,
+      "sha256": "dc8d8aacc35464cca23cb0fdfaa2fa70a03065994da25f2c015eda2781bdcbe3"
+    },
+    "tests/test_native_loader.py": {
+      "bytes": 5477,
+      "sha256": "40fb968b945833f10ddaf037e212b8832f90abd9bd53c0b52c9d92e45114a38a"
+    },
+    "tests/test_native_small.py": {
+      "bytes": 4514,
+      "sha256": "a40e07d2b33b74464a60f198bde0b93be3a8320a350e86c27a944e6a499b9289"
+    },
+    "tests/test_slider.py": {
+      "bytes": 4521,
+      "sha256": "49d718747a52738151709e0911f9d69f948fc1a7458588d457f449cee160b4cd"
+    }
+  },
+  "source_authentication_does_not_mean_all_tests_executed": true
+}

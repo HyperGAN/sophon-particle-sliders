@@ -1,6 +1,6 @@
 # Sophon Particle Sliders
 
-**Current prospective Source:** [fresh PG0.9.5 initialization and real tagged native text](CURRENT-PG095.md) uses the distinct `sophon095` backend. Native CPU/pretrained qualification is pending. Historical `sophon` Source and evidence below remain unchanged; their CPU result does not qualify the new profile.
+**Current `sophon095` profile:** [fresh PG0.9.5 initialization, exact resume and tagged native text](CURRENT-PG095.md) passed nine relevant local CPU checks on 2026-11-09, including the tiny official audio-conditioned generation path and real local-random PEFT tag loading. [Current evidence and scope](evidence/current-pg095-cpu-qualification-20261109.md). The 32B pretrained model, GPU execution, output quality and LR tuning remain unqualified; CUDA is refused. The historical `sophon` cohort below remains unchanged.
 
 ## Historical core0.14.0 CPU cohort
 
@@ -23,7 +23,10 @@ websockets, synthesize audio, change turn-taking, or claim pretrained quality.
 The nonlinear routed particle branch cannot be exported as an ordinary PEFT
 LoRA or loaded into stock vLLM. Keep the shared v2 artifact and this native host.
 
-## Installation
+## Historical installation (core0.14.0 cohort)
+
+These commands describe the historical checkout. For this checkout's distinct
+current profile and pinned environment, use [CURRENT-PG095.md](CURRENT-PG095.md).
 
 Use an isolated Python 3.11+ environment (official serving requires Linux/CUDA
 and Python 3.12). Install the shared distribution from reviewed commit
@@ -52,7 +55,7 @@ audio, projector, tag parameters and base weights are frozen. OFF bypasses the
 routed branch exactly while preserving the original tag behavior. No merging,
 weight averaging or EMA is used.
 
-## Matched data and shared lifecycle
+## Historical matched data and shared lifecycle
 
 Each JSONL record has `neutral_messages`, `positive_messages` and `audios`:
 
@@ -103,7 +106,7 @@ The same request dictionary works with the shared CLI's `infer --mode response
 --native request.json`. Low-level Python callers may supply a prepacked tensor
 dictionary as `prompt` instead of `messages`/`audios`.
 
-## Resources, scope and verification
+## Historical resources, scope and verification
 
 Upstream recommends one 80 GB GPU for Tag/Flash serving, two for E2E. Its
 official thinker LoRA SFT recipe reports about 65 GB peak at batch 1 and ≤2048
