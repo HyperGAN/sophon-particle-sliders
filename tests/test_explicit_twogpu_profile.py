@@ -82,7 +82,8 @@ def test_exact_fresh_full_resume_raw_and_no_reinitialization(tmp_path,monkeypatc
         assert full.game.backend.runtime.pg_device.type=='cpu'
         receipt=full.game.backend.fresh_initialization
         assert receipt['components']['adapter.bank']['parameters']['particles']['host_declaration']['std']==.1
-        assert [g['lr']for g in full.game.opt_g.param_groups]==[.012,.009]
+        assert [g['lr']for g in full.game.opt_g.param_groups]==[
+            config.options['lr'],config.options['lr']*config.options['prior_lr_mult']]
         assert all(g['lr']==.006 for g in full.game.opt_d.param_groups)
         full.train();expected=full.checkpoint()
     with current.open_training(config)as first:
@@ -98,8 +99,11 @@ def test_exact_fresh_full_resume_raw_and_no_reinitialization(tmp_path,monkeypatc
 
 def test_real_tiny_official_audio_text_uses_new_path(native_small,monkeypatch):
     old,_=native_small;old.close()
+    from sophon_particle_sliders.native import LOCK
+    # Match the actual native loader's source identity, retaining tiny/random scope.
+    identity=dict(old.model_identity,source_commit=LOCK['commit'])
     n=SophonResponse(old.model,SophonSlider(old.model,rank=4,particles=8,particle_dim=4,pg_device='cpu'),
-        model_identity=old.model_identity,processor=SimpleNamespace(tokenizer=SimpleNamespace(decode=lambda ids,**k:' '.join(map(str,ids)))))
+        model_identity=identity,processor=SimpleNamespace(tokenizer=SimpleNamespace(decode=lambda ids,**k:' '.join(map(str,ids)))))
     from sophon_twogpu95.finished_text import generate
     merged=[];original=n.model._merge_audio
     def observe(ids,embeds,values,lens,lengths):
