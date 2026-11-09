@@ -66,13 +66,15 @@ def generate(native, *, prompt=None, messages=None, audios=(), max_tokens=4096,
     if device.type != 'cpu':
         raise ValueError('native multi-GPU generation requires separate actual placement/admission support')
     tensors = {key: value.to(device) for key, value in prompt.items()}
-    # Direct generation kwargs win over HF model defaults. Official wrapper's
-    # prepare_inputs_for_generation carries the actual audio merge on prefill.
+    # Direct kwargs win over HF model defaults. The official67fe wrapper carries
+    # audio when use_cache=False; HF4.57 does not supply its is_first_iteration
+    # flag. Full-prefix calls therefore retain native audio without patching the
+    # official implementation or silently producing text-only cached prefill.
     with torch.random.fork_rng(devices=[]):
         torch.default_generator.manual_seed(seed)
         with native.network.scaled(strength):
             output = native.model.generate(**tensors, max_new_tokens=max_new_tokens,
-                do_sample=False, use_model_defaults=False, use_cache=True,
+                do_sample=False, use_model_defaults=False, use_cache=False,
                 return_dict_in_generate=True, output_scores=False)
     sequences = output.sequences
     if sequences.ndim != 2 or sequences.shape[0] != 1 or sequences.shape[1] < length:
@@ -87,5 +89,5 @@ def generate(native, *, prompt=None, messages=None, audios=(), max_tokens=4096,
         source_commit=native.model_identity['source_commit'], selection='raw', weight_EMA=None,
         tag_adapter='frozen, active', prompt_tokens=length, audio_chunks=int(prompt.get('audio_lens', torch.empty(0)).numel()),
         new_token_ids=tokens, max_new_tokens=max_new_tokens, strength=strength, seed=seed,
-        actual_generate_kwargs=dict(do_sample=False, use_model_defaults=False, use_cache=True),
+        actual_generate_kwargs=dict(do_sample=False, use_model_defaults=False, use_cache=False),
         audio_synthesis=False, pretrained_quality_qualified=False))

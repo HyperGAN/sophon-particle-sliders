@@ -56,7 +56,10 @@ It calls the actual pinned `DuplexJevForConditionalGeneration.generate`; officia
 prefill merges native audio and the frozen tag stays active while the routed
 slider spans generation. It does not use an ASR transcript, hidden-state decoder
 approximation or waveform generator. Greedy `do_sample=False` and
-`use_model_defaults=False` are direct kwargs; seed/RNG and slider scales are
+`use_model_defaults=False` are direct kwargs. `use_cache=False` retains native
+audio on every full-prefix call: the official67fe wrapper expects a prefill flag
+that Transformers4.57.6 does not supply for the cached path. The official Source
+is unchanged; no text-only fallback is permitted. Seed/RNG and slider scales are
 scoped. Sound tags and native EOS tokens are preserved in decoded text. A legal
 EOS or length-bound truncation is not classified as catastrophic here.
 
