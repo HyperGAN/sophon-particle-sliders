@@ -9,7 +9,7 @@ description = "Sophon Realtime v1 thinker responses over the shared Particle Sli
 readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
-dependencies = ["particle-sliders-core==0.14.0"]
+dependencies = ["particle-sliders-core==0.14.1"]
 
 [project.optional-dependencies]
 native = ["transformers>=4.51,<5.20", "peft>=0.20,<0.21", "accelerate>=1.4,<2", "librosa", "soundfile", "safetensors>=0.4,<1"]
@@ -17,15 +17,20 @@ test = ["pytest>=8"]
 
 [project.entry-points."particle_sliders.response_backends"]
 sophon = "sophon_particle_sliders.backend:TRAINING"
+sophon095 = "sophon_particle_sliders.current_backend:TRAINING"
 
 [project.entry-points."particle_sliders.inference_backends"]
 sophon = "sophon_particle_sliders.backend:INFERENCE"
+sophon095 = "sophon_particle_sliders.current_backend:INFERENCE"
+
+[project.scripts]
+sophon-slider = "sophon_particle_sliders.current_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-sophon_particle_sliders = ["upstream.json"]
+sophon_particle_sliders = ["upstream.json", "current_core.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

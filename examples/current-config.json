@@ -1,0 +1,25 @@
+{
+  "backend": "sophon095",
+  "cohort": "sophon-pg095-scoped-init-native-text-v1",
+  "options": {
+    "model_dir": "/models/Sophon-Realtime-v1",
+    "source_dir": "/src/sophon-realtime",
+    "training_file": "/data/matched.jsonl",
+    "response_width": 5120,
+    "device": "cpu",
+    "base_precision": "bfloat16",
+    "rank": 8,
+    "particles": 128,
+    "particle_dim": 4,
+    "max_tokens": 4096,
+    "steps": 4,
+    "batch": 2,
+    "seed": 7,
+    "ema_decay": null,
+    "pg_version": "0.9.5",
+    "pg_source_profile": "release-0.9.5",
+    "penalty_input_domain": "continuous",
+    "source_profile": "sophon-current-core-pg095-fresh-scoped-init-v1",
+    "initialization_policy": "sophon-kaiming-RMS-QR-zero-up-bank-R2-std01-v1"
+  }
+}
