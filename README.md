@@ -1,5 +1,9 @@
 # Sophon Particle Sliders
 
+**Current prospective Source:** [fresh PG0.9.5 initialization and real tagged native text](CURRENT-PG095.md) uses the distinct `sophon095` backend. Native CPU/pretrained qualification is pending. Historical `sophon` Source and evidence below remain unchanged; their CPU result does not qualify the new profile.
+
+## Historical core0.14.0 CPU cohort
+
 **Experimental thinker-response integration, not a validated realtime voice service.**
 
 - **Validated:** 14 installed-wheel CPU tests passed, including synthetic and tiny randomly initialized official architecture checks, real PEFT tag loading in FP32/BF16, gradients, native audio packing, and exact checkpoint/resume.
