@@ -53,3 +53,9 @@ Generation uses the actual official tagged wrapper and native audio merge. Input
 `tests/test_explicit_twogpu_profile.py` adds six checks: literal full map/admission refusal without CUDA; external owner context/reset; real new CPU slider gradient path/frozen tag/zero-UP/full width; exact synthetic FULL split-resume/RAW/no reinit/common rates; a real differentiable Accelerate-hook preservation/refusal check; and real tiny official audio-conditioned text through the new path with observed audio merge and RNG/state checks. They do not load pretrained weights, call Hub or initialize CUDA. Root must execute them under an owned CPU admission using the exact qualified dependency prefix read-only and this new Source, with bytecode/cache writes disabled. This is a new-source check, not a rerun of the old nine/61 checks.
 
 CPU fixtures do not establish real two-GPU dispatch, full32B fit, pretrained update/resume/render correctness, catastrophic eligibility, effect/LR measurement or released weights. Those remain separate genuine Root-owned work after complete model staging and fresh two-GPU admission. No initializer reset or repetition of completed historical training is requested.
+
+## Actual tiny CPU qualification
+
+Six distinct checks now pass with the same native runtime code. The first run retained four passes and two fixture failures; only the two corrected cases were executed again and both passed. The fixes preserve literal floating-point rate multiplication and supply the same official source identity as the real loader. No prior passing case or original nine-check suite was replayed. See [the portable receipt](evidence/explicit-two-gpu-native95-CPU-qualification.json).
+
+This establishes tiny CPU software conformance only. Actual two-GPU dispatch, full32B fit and pretrained training/output/LR measurements remain unqualified until model staging and a genuine owned execution complete.
