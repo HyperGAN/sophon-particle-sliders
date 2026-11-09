@@ -129,3 +129,6 @@ Code is Apache-2.0. See `NOTICE` for upstream and shared component licenses.
 Official sources: [Sophon repository](https://github.com/adventists-ai/sophon-realtime),
 [fine-tuning](https://github.com/adventists-ai/sophon-realtime/tree/67fe6cfc02616cec5a5a883b063bdefd7b31fc2b/finetune),
 [model card](https://huggingface.co/adventists-ai/Sophon-Realtime-v1).
+
+
+A distinct **explicit owned two-GPU Source profile** is proposed in [EXPLICIT-TWO-GPU.md](EXPLICIT-TWO-GPU.md). It retains the original CPU-qualified profiles unchanged; its new focused CPU checks and actual32B/two-GPU execution remain unqualified. No rate/quality claim is added.
