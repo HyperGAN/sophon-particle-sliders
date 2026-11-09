@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sophon-particle-sliders"
+version = "0.1.0"
+description = "Sophon Realtime v1 thinker responses over the shared Particle Sliders lifecycle"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = ["particle-sliders-core==0.14.0"]
+
+[project.optional-dependencies]
+native = ["transformers>=4.51,<5.20", "peft>=0.20,<0.21", "accelerate>=1.4,<2", "librosa", "soundfile", "safetensors>=0.4,<1"]
+test = ["pytest>=8"]
+
+[project.entry-points."particle_sliders.response_backends"]
+sophon = "sophon_particle_sliders.backend:TRAINING"
+
+[project.entry-points."particle_sliders.inference_backends"]
+sophon = "sophon_particle_sliders.backend:INFERENCE"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+sophon_particle_sliders = ["upstream.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["sophon_particle_sliders"]

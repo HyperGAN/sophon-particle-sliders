@@ -1,0 +1,12 @@
+Sophon Particle Sliders, 2026.
+
+This product uses particle-sliders-core 0.14.0 and ParticleGAN 0.9.5 as separate
+dependencies. Preserve their licenses and notices (shared core: MIT).
+
+Sophon-Realtime by Adventists AI is Apache-2.0. No upstream model weights or
+source are redistributed in this package; the native loader verifies an
+explicit local source pin. Its thinker derives from Qwen3-VL-32B-Instruct via
+DuplexJev-32B-Para; the audio encoder derives from Qwen3-ASR (Apache-2.0).
+Tag speech rendering derives from CosyVoice; Flash from Qwen3-TTS (Apache-2.0).
+Those speech renderers are not loaded here. Upstream live gateway Silero VAD is
+MIT; it is not loaded here. Consult the model/build NOTICE before redistribution.

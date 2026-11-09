@@ -1,0 +1,76 @@
+{
+  "timestamp_utc": "2026-11-08T18:17:52.224590+00:00",
+  "scope": "Local CPU implementation; no pretrained/native speech quality qualification",
+  "checks": {
+    "installed_wheel_pytest": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    "ruff_selected": [
+      "E4",
+      "E7",
+      "E9",
+      "F",
+      "I"
+    ],
+    "ruff_format": "passed",
+    "wheel_build": "passed",
+    "installed_entrypoint_discovery": "passed: response sophon and inference sophon",
+    "installed_core_matches_reviewed_sources": "passed",
+    "wheel_source_identity": "passed"
+  },
+  "execution": {
+    "cpu_threads": 1,
+    "cuda_initialized": false,
+    "cuda_assertions": "asserted false by CPU tests",
+    "pretrained_weights_downloaded": false,
+    "heavy_gpu_jobs_launched": 0,
+    "job_or_lease_mutations": 0,
+    "tests": [
+      "synthetic native-contract autograd: up/down/router/bank gradients, frozen tag/audio/base",
+      "actual pinned official architecture audio merge equals wrapper hidden state",
+      "native-small shared PG updates and exact state continuation",
+      "shared full4 == split2 + resume2, full packet equality",
+      "RAW inference v2 without training data, teacher or critic",
+      "real PEFT 0.20 tag loading on local random weights: FP32 and BF16",
+      "actual 8kHz stereo WAV -> mono16kHz -> official mel processor -> native hidden response",
+      "partial attachment failure rolls back forwards/flags/RNG",
+      "wrong width/CUDA/EMA/source/audio rejection"
+    ]
+  },
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "particle-sliders-core": "0.14.0",
+    "particlegan": "0.9.5",
+    "pytest": "9.1.1"
+  },
+  "isolated_extra_versions": {
+    "peft": "0.20.0",
+    "accelerate": "1.15.0",
+    "librosa": "0.11.0",
+    "soundfile": "0.14.0",
+    "soxr": "1.1.0",
+    "audioread": "3.1.0"
+  },
+  "wheel_sha256": "c58122db219c4929e6b2a73e1c50d80e3f1f9cc506ff3605803d158439246b0e",
+  "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 SOPHON_SOURCE=/path/to/reviewed/sophon-source SOPHON_NATIVE_LOADER=1 python -m pytest -q /path/to/sophon-particle-sliders/tests",
+  "warnings": [
+    "TRANSFORMERS_CACHE deprecation in existing host environment",
+    "existing optional bitsandbytes was compiled without GPU support; no quantization used",
+    "PEFT tiny synthetic adapter save reports no base config path; no pretrained weights involved"
+  ],
+  "unrun": [
+    "32B pretrained checkpoint load/update/resume",
+    "CUDA resource/peak-memory qualification and scheduler integration",
+    "Tag/Flash/E2E audio synthesis, websocket duplex/barge-in/latency",
+    "finished-output intended-effect scores or speech quality"
+  ],
+  "blockers": [
+    "No Sophon scheduler admission integration: CUDA refused before allocation",
+    "32B pretrained weights were not staged/downloaded by this task"
+  ],
+  "record_kind": "Historical prepublication local CPU validation; public CI is recorded separately by GitHub Actions",
+  "implementation_commit": "5ad5f229ca9612138dfd6ffbec5c01d71ed973bc"
+}

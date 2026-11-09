@@ -1,0 +1,15 @@
+{
+  "distribution": "particle-sliders-core",
+  "version": "0.14.0",
+  "repository": "https://github.com/HyperGAN/particle-sliders",
+  "commit": "8a696eb33c1a9d34472afad3a3199bd4776a797f",
+  "particlegan": "0.9.5",
+  "checked_api_files": {
+    "lifecycle.py": "112040dee160ee64f1c5909080de7781231ac97284c2c82d250a08e036bb6b7b",
+    "pg09.py": "96dcf51aa614539a3c9a8f169cf190e155d695b9df962cba058b37a65236a830",
+    "pg09_audio.py": "398f7fa4bab5d44f849b25efc47a23d0c3ba83d975a61180ae57fcbc5597b36d",
+    "response.py": "8e08ea47203dfc2efae453b4f3637a2ba827fa197e7f5bef7b3edde4a4920a1c",
+    "routed_projection.py": "d71e032c1a578e7fdc0494b3d43b982b3b4afdbc4ba859f21f75e2118c347e04",
+    "inference.py": "2ecb2a791089f93af12deb447b26d9f81a2600e1b8d816eff89102207affdc88"
+  }
+}

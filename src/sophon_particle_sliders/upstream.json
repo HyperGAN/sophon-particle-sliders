@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/adventists-ai/sophon-realtime",
+  "commit": "67fe6cfc02616cec5a5a883b063bdefd7b31fc2b",
+  "files": {
+    "finetune/sophon_swift/__init__.py": "bbb30ff1ea3084338da219a67193691083cbd82da82a33c025407c42dd43c6a4",
+    "finetune/sophon_swift/adapters.py": "3081e1e1a7fefce184fcece29fb6ed82ef482e21defbdcc0a3ded7c5584ccfbe",
+    "finetune/sophon_swift/configuration_qwen3_asr_encoder.py": "bf19170b3edd7dea15017d684ed40321f87bd04220c8a5f6bae4130a84bcb0ba",
+    "finetune/sophon_swift/modeling_duplexjev.py": "2c9a79eb57397e5d70ce49290b985426a8c3ddff5a6540d451a0ab76a37346ad",
+    "finetune/sophon_swift/modeling_qwen3_asr_encoder.py": "99a659287ad9f40641ce02ce4f3564326675ba2270b880ec4637edf551322370",
+    "finetune/sophon_swift/processing.py": "d0f6d86d2705ccdaf6e58a5fa84f2c1240080e3b039cca31936dc2829e9c5004",
+    "finetune/sophon_swift/swift_register.py": "289a7f19cf67ccacbdf2ae7a6c9908695636ff0a37b2c37b5e394ef4cc587714"
+  }
+}
