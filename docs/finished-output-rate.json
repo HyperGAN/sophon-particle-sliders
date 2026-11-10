@@ -119,12 +119,35 @@
     "included_backends": [
       "sophon",
       "sophon095",
-      "sophon095_twogpu"
+      "sophon095_twogpu",
+      "sophon_speech95"
     ],
     "waveform_render_supported": false,
-    "measured_speech_namespace_included": false,
+    "measured_speech_namespace_included": true,
     "public_loading_of_private_speech_RAW32_or_RAW128_supported": false,
-    "universal_speech_CLI_claimed": false
+    "universal_speech_CLI_claimed": false,
+    "captured_backends_at_that_commit": [
+      "sophon",
+      "sophon095",
+      "sophon095_twogpu"
+    ],
+    "native_speech_extra_included": true,
+    "waveform_render_API_included": true,
+    "owner_required_console_entry_included": true,
+    "mixed_execution_helper_included": true,
+    "mixed_execution_helper_namespace": "sophon_speech_execution.mixed_execution",
+    "caller_owned_execution_required": true,
+    "bare_console_resource_admission": false,
+    "captured_consumer_strength_range": [
+      0,
+      1
+    ],
+    "wheel_software_check_scope": "Package resources/registrations, no-owner refusal and saved RAW factory/source/runtime metadata only; RAW added-network tensors decoded on CPU but not applied to a native model.",
+    "waveform_render_supported_scope": "Only package/factory metadata compatibility is checked; full native loading/rendering by the new distribution remains unexecuted.",
+    "full_native_RAW_load_or_render_qualification": false,
+    "new_distribution_full_native_RAW_load_or_render_executed": false,
+    "code_presence_transfers_old_native_qualification": false,
+    "native_API_guide": "NATIVE-SPEECH.md"
   },
   "actual_sampling_execution": {
     "profile": "original-Sophon64-BF16-CPU20to43-GPU0first20-GPU1last20-v1",

@@ -11,8 +11,12 @@ which completed the96 missing updates to the original128-step horizon.
 [Values, scope and API boundaries](docs/finished-output-learning-rates.md) and
 [portable scalar/provenance summary](docs/finished-output-rate.json) distinguish
 this captured `sophon_speech95`/fcb15754 native E2/HiFT speech profile from the
-public text profiles below. **That speech namespace and its private execution
-companions are not included in this public package.** These results do not make
+public text profiles below. **This package includes the exact speech namespace,
+the `native-speech` extra and a separate mixed-placement helper.** The
+[native speech API](NATIVE-SPEECH.md) requires a runner-supplied live owner and
+keeps the captured strength range [0,1]. Package/RAW factory metadata compatibility
+is separate from native execution: the new distribution has not exercised a full
+pretrained RAW load or render. These results do not make
 `sophon-slider` or `sophon095_twogpu` waveform renderers, release RAW weights,
 change defaults, or establish ordinary hosted Generate. Existing profile-specific
 qualification statements below retain their original scope.

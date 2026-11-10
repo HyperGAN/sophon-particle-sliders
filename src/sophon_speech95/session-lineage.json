@@ -1,0 +1,31 @@
+{
+  "original_engine_sha256": "8b467a31b8f8c3d0ffa90799e3a45f0f404f5e9a65d4d721b0a11744022df373",
+  "original_methods": {
+    "__init__": "4c8dd0ccdac29e0bf99d8f130c7426ed8e538afc8e68fd51d4a7e4b792cf3f73",
+    "add_text": "c331bac799334e64d94af24969bcafe5a060bf25541ad7749842331247211bba",
+    "finish": "12729cd6df8dee1e1882a35b6722835891242847f7fa5a0fdc5204b6c081a706",
+    "cancel": "09476d312d2bd1591f4026b082eed7fc54fc0369bdf7280db552941e8037f24a",
+    "_ev_clean": "8e7e31237e0950df34d4d9828ef02f1a7057072af17fa4ea9ec5bc2412c7ce24",
+    "_ev_build": "9f91ed66e241d38a525797d535b8f6921207eb377ca03af1cd65b0cf33840ef6",
+    "_ev_add": "41647bc53db8226d050acace72be92a212a864d415dd7d28221445070b320a44",
+    "_commit": "1779c7b760340c46c6c404597a5dd13765756fa10f9fb5da32953231b631e1c9",
+    "_steps": "88d07e05077cccf918c35251bda21b0d9c8399a995025434d7dea02dd6ebad69",
+    "_render": "3c7c109550d41f9b198bbab082464a08a71e8b2c258c9cdc7774e6ffed2e0e15",
+    "_out": "1bc1792c357d91ae039a063f22aa46f81637c9a285f0c2b0516f77163b1c223a",
+    "_render_loop": "a5cd8121cb18044a1b020e48b03ac755141e9e588a8439070d569423c17a5ba4",
+    "run": "1c56265e101ef77695c3f9a9801b6b350069ec1fb0967d396a9dcce61072928f",
+    "say_all": "fc1c924eb1ce97145a9436e88a70948b389ba933817ad9215f61e34d9c220b97"
+  },
+  "device_only_render_changes": [
+    "frames.cuda1_to_decoder_cuda0",
+    "decoder mask/crossfade device"
+  ],
+  "excluded_modes": [
+    "FP8",
+    "fused",
+    "graphs",
+    "E2V2",
+    "parallelE2"
+  ],
+  "note": "Original eager action/EOS/KF and original E2/HiFT windowing/out semantics; scheduling profile explicit"
+}
