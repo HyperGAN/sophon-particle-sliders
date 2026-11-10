@@ -13,20 +13,24 @@ dependencies = ["particle-sliders-core==0.14.1"]
 
 [project.optional-dependencies]
 native = ["transformers>=4.51,<5.20", "peft>=0.20,<0.21", "accelerate>=1.4,<2", "librosa", "soundfile", "safetensors>=0.4,<1"]
+native-speech = ["torch==2.9.1", "transformers==4.57.6", "torchaudio==2.9.1", "x-transformers==2.31.7", "einops==0.8.1", "safetensors==0.8.0", "numpy==2.2.6", "scipy>=1.11", "librosa>=0.10", "soundfile>=0.12"]
 test = ["pytest>=8"]
 
 [project.entry-points."particle_sliders.response_backends"]
 sophon = "sophon_particle_sliders.backend:TRAINING"
 sophon095 = "sophon_particle_sliders.current_backend:TRAINING"
 sophon095_twogpu = "sophon_twogpu95.backend:TRAINING"
+sophon_speech95 = "sophon_speech95.backend:TRAINING"
 
 [project.entry-points."particle_sliders.inference_backends"]
 sophon = "sophon_particle_sliders.backend:INFERENCE"
 sophon095 = "sophon_particle_sliders.current_backend:INFERENCE"
 sophon095_twogpu = "sophon_twogpu95.backend:INFERENCE"
+sophon_speech95 = "sophon_speech95.backend:INFERENCE"
 
 [project.scripts]
 sophon-slider = "sophon_particle_sliders.current_cli:main"
+sophon-speech-slider = "sophon_speech95.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -34,6 +38,7 @@ where = ["src"]
 [tool.setuptools.package-data]
 sophon_particle_sliders = ["upstream.json", "current_core.json"]
 sophon_twogpu95 = ["current_core.json"]
+sophon_speech95 = ["current_core.json", "upstream.json", "model_files.json", "session-lineage.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

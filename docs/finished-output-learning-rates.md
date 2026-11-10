@@ -36,8 +36,8 @@ finished output or old first was replayed to make this comparison.
 
 ## Public routing boundary
 
-The captured public package at commit `c7bc7cb08bd3bbc78e1ae25d2813b67b887b0f6d`
-has these entry points:
+The historical public package captured at commit
+`c7bc7cb08bd3bbc78e1ae25d2813b67b887b0f6d` had these text entry points:
 
 | Public entry | Supported recorded scope | Speech-result compatibility |
 | --- | --- | --- |
@@ -45,7 +45,7 @@ has these entry points:
 | `sophon095` / `sophon-slider` | Current CPU tagged, audio-conditioned text; see [CURRENT-PG095](../CURRENT-PG095.md) | No waveform renderer |
 | `sophon095_twogpu` / `sophon_twogpu95` | Explicit owned two-GPU tagged text; see [EXPLICIT-TWO-GPU](../EXPLICIT-TWO-GPU.md) | Text outputs only |
 
-The measured speech implementation is the separate captured source
+The measured speech implementation originates in captured source
 `fcb157549099515b7269d2f56119eadf0266eeaf`, namespace `sophon_speech95`, source
 profile `sophon-original-speech-reg5120-pg095-v1`, on captured core0.14.1/PG0.9.5
 at `41f6066f2d2644902670d5eb736de052e1a70553`. Its full acoustic response is
@@ -54,15 +54,35 @@ same owned branch to the original reg output. It uses the original full64-layer
 BF16 Sophon model/tag and original E2/HiFT speech components. This is a different
 factory/RAW identity from the public tagged-text profiles.
 
-This public package lacks that speech namespace, its `native-speech` dependency
-extra, `sophon-speech-slider` entry point, original speech source/weights and
-private mixed-placement execution companions. A documentation patch does not add
-these components. No command in this guide promises to install or run the private
-speech artifact through a public text backend. Reproducing the captured result
-requires its exact speech source/runtime, model/cache/artifact identities and
-an actual bounded execution owner; these files are not bundled or public weight
-downloads. The portable JSON records scalar arithmetic and retained identities,
-not an executable checkpoint conversion or source migration.
+The current package includes those 16 speech namespace files byte-for-byte,
+the `native-speech` extra, `sophon_speech95` response/inference registrations and
+the owner-required `sophon-speech-slider` entry. The same mixed-placement helper
+is packaged separately as `sophon_speech_execution.mixed_execution`, outside the
+captured factory identity. See [the native speech API](../NATIVE-SPEECH.md).
+The original source/model locks and strict runtime checks remain; original model
+weights, caches, RAW/FULL artifacts and private execution-owner workers are not
+bundled. Existing text backends do not become waveform renderers.
+
+Use `sophon_speech95.backend.open_training(config, resume=full, admission=owner)`
+for explicit fresh/restore construction before optimizers, and
+`open_inference(artifact, options=local_paths_and_captured_placement,
+admission=owner, ...)` for strict RAW inference. The caller's real runner must
+authorize imports, acquire resources and supply the live owner. A bare console
+entry, receipt string or generic training dispatcher cannot supply this context.
+The captured consumer range is [0,1]. The mixed helper owns construction placement
+and CPU BF16 sampling separately; no auto device map or strength2 support is
+added to the captured factory.
+
+The wheel software check covers actual package resources/registration, no-owner
+refusal and captured RAW factory/capability/source/runtime metadata. It decodes
+the small saved RAW added-network tensors on CPU for checksum/metadata checking,
+without applying them to a native model. It is not a full pretrained load/render
+qualification for the new distribution. Keep
+`full_native_RAW_load_or_render_qualification:false` and the broad private-RAW
+public-support flag false. A code route is present; exact original runtime,
+model/artifact identity and actual owned execution remain required. The portable
+JSON does not convert or migrate a checkpoint, release weights, create ordinary
+Generate or promote eligibility/defaults.
 
 ## Exact rate options in the captured speech source
 
@@ -113,11 +133,13 @@ initialization. It preserves the original128 horizon and all completed state.
 It is a later training budget, not another rate comparison or a replacement for
 the RAW32 scores above.
 
-The matched finished speech profile is explicitly private **CPU24/GPU20+20**:
+The retained private finished-speech runs used explicit **CPU24/GPU20+20**:
 original layers20–43 on CPU,0–19 on GPU0 and44–63 on GPU1, BF16 with CPU autocast;
 E2/HiFT stays GPU0 and heads/PG/embedding/norm stay GPU1. All64 original layers
 and their language KV routing remain. Captured32/32 factory identity and actual
-mixed construction are recorded separately. No dtype/quantization/model/geometry
+mixed construction are recorded separately. The helper Source is now included
+in the separate execution namespace; this does not replay or requalify those runs.
+No dtype/quantization/model/geometry
 shortcut, bitwise-CUDA or placement-independent equivalence is claimed. The
 older CUDA OFF and its judgments do not transfer; the new mixed OFF was sampled
 once and is shared by the compared arms and later128 preview.

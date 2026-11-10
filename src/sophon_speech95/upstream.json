@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/adventists-ai/sophon-realtime",
+  "commit": "67fe6cfc02616cec5a5a883b063bdefd7b31fc2b",
+  "files": {
+    "sophon_expressive/talker_model.py": "e1f34c43c1832dc5ca50f6ca66ae03b37320c9e41cab41035b4ee78e1c13c2fc",
+    "sophon_expressive/engine.py": "8b467a31b8f8c3d0ffa90799e3a45f0f404f5e9a65d4d721b0a11744022df373",
+    "sophon_expressive/e2_model.py": "1f41c5f85ea01310e52201121e353aeff7cb545804daf3d693983a8e04d2acca",
+    "sophon_expressive/ev_tags.py": "5501d88407991d83761969393488c1e73bc5e7cbc65a51d0c6da07416cfad6a4",
+    "sophon_expressive/cosyvoice_lite/__init__.py": "c20c438b224a9dee9705d90b44f1d7b57cb60b9485fc7522fe84f6c01f76d9a0",
+    "sophon_expressive/cosyvoice_lite/activation.py": "1a1b7a6e511d8dfda9d1d083ebf0fb0db42b278ccd167c23e32a193fb5d2560b",
+    "sophon_expressive/cosyvoice_lite/common.py": "ba98f2e6a769e4873ae3a3aade0cb95ac3f1642fef144c8abc698ccb507d8b4f",
+    "sophon_expressive/cosyvoice_lite/convolution.py": "af14da3b74559754901ecf8d064cdf29edb2ed4a48964440b046fb4b8929c962",
+    "sophon_expressive/cosyvoice_lite/dit.py": "a841f4d96900223bc08064462556ee0905f914da8979a6266fca74c8e876fda3",
+    "sophon_expressive/cosyvoice_lite/dit_modules.py": "ef5d56d718e3f4db471b265f1769aa26d2cc1211d74719ccb8fe66a443f3423e",
+    "sophon_expressive/cosyvoice_lite/f0_predictor.py": "ac5c583093611058cd187ef2eb605d33ce18990f6f539f697fe23d78d0ef4fb9",
+    "sophon_expressive/cosyvoice_lite/flow_matching.py": "66f3ffc4ba58b20ab39bcca328ab78c7270b9354bebc3c556bbc0b7fc0d15d81",
+    "sophon_expressive/cosyvoice_lite/generator.py": "232a5d1e83c6c430676ab6ec6c26ebf6d09951dda0d539823c378d6dbb8b9b80",
+    "sophon_expressive/cosyvoice_lite/mask.py": "a4d0b57e838759cbfe2bff37eaa7a59c18bf6f19b5a4be0f76477cf40e668048",
+    "sophon_expressive/cosyvoice_lite/prelookahead.py": "8f1ea2c7449a1c23fcaec166394bbeb80f3505e5bfcc9e9eb7ac9ebdd9ec497c"
+  },
+  "model": "AdventistsAI/Sophon-Realtime-v1",
+  "model_revision": "c6e664d8ddca6522ef905fa170d9ca6cfa5dd568"
+}
