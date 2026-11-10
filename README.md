@@ -1,5 +1,22 @@
 # Sophon Particle Sliders
 
+## Recorded native speech result: a separate research profile
+
+A completed, provisional one-case **RAW32 laughter** comparison gives **G0.012
++0.25 versus G0.001 0.0**, at fixed actual D0.018000000000000002 and bank0.03.
+The frozen model instrument is unqualified for the trait; catastrophic eligibility
+is unknown. G0.012 was chosen only for the requested exploratory continuation,
+which completed the96 missing updates to the original128-step horizon.
+
+[Values, scope and API boundaries](docs/finished-output-learning-rates.md) and
+[portable scalar/provenance summary](docs/finished-output-rate.json) distinguish
+this captured `sophon_speech95`/fcb15754 native E2/HiFT speech profile from the
+public text profiles below. **That speech namespace and its private execution
+companions are not included in this public package.** These results do not make
+`sophon-slider` or `sophon095_twogpu` waveform renderers, release RAW weights,
+change defaults, or establish ordinary hosted Generate. Existing profile-specific
+qualification statements below retain their original scope.
+
 **Current `sophon095` profile:** [fresh PG0.9.5 initialization, exact resume and tagged native text](CURRENT-PG095.md) passed nine relevant local CPU checks on 2026-11-09, including the tiny official audio-conditioned generation path and real local-random PEFT tag loading. [Current evidence and scope](evidence/current-pg095-cpu-qualification-20261109.md). The 32B pretrained model, GPU execution, output quality and LR tuning remain unqualified; CUDA is refused. The historical `sophon` cohort below remains unchanged.
 
 ## Historical core0.14.0 CPU cohort
