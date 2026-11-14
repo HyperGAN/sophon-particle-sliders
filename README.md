@@ -1,5 +1,7 @@
 # Sophon Particle Sliders
 
+**Calculated memory:** Native original speech 32/32 planning budget: **56/66 GiB GPU / 108 GiB host** for the bounded4096-context profile. CPU thinker and cached acoustic training have separate estimates. [Full memory ledger and limits](MEMORY.md). These are planning estimates, not measured peaks.
+
 ## Recorded native speech result: a separate research profile
 
 A completed, provisional one-case **RAW32 laughter** comparison gives **G0.012
