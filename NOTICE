@@ -1,6 +1,6 @@
 Sophon Particle Sliders, 2026.
 
-This product uses particle-sliders-core 0.14.0 and ParticleGAN 0.9.5 as separate
+This product uses Particle Sliders core 0.15.1 and ParticleGAN 0.11.0 as separate
 dependencies. Preserve their licenses and notices (shared core: MIT).
 
 Sophon-Realtime by Adventists AI is Apache-2.0. No upstream model weights or

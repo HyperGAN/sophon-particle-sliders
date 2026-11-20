@@ -12,18 +12,16 @@ which completed the96 missing updates to the original128-step horizon.
 
 [Values, scope and API boundaries](docs/finished-output-learning-rates.md) and
 [portable scalar/provenance summary](docs/finished-output-rate.json) distinguish
-this captured `sophon_speech95`/fcb15754 native E2/HiFT speech profile from the
-public text profiles below. **This package includes the exact speech namespace,
-the `native-speech` extra and a separate mixed-placement helper.** The
-[native speech API](NATIVE-SPEECH.md) requires a runner-supplied live owner and
-keeps the captured strength range [0,1]. Package/RAW factory metadata compatibility
-is separate from native execution: the new distribution has not exercised a full
-pretrained RAW load or render. These results do not make
-`sophon-slider` or `sophon095_twogpu` waveform renderers, release RAW weights,
-change defaults, or establish ordinary hosted Generate. Existing profile-specific
-qualification statements below retain their original scope.
+the historical native E2/HiFT speech run from the current source. The
+[native speech API](NATIVE-SPEECH.md) retains the strength range [0,1] and
+requires a live scheduler owner. The captured speech result predates this
+source migration.
 
-**Current `sophon095` profile:** [fresh PG0.9.5 initialization, exact resume and tagged native text](CURRENT-PG095.md) passed nine relevant local CPU checks on 2026-11-09, including the tiny official audio-conditioned generation path and real local-random PEFT tag loading. [Current evidence and scope](evidence/current-pg095-cpu-qualification-20261109.md). The 32B pretrained model, GPU execution, output quality and LR tuning remain unqualified; CUDA is refused. The historical `sophon` cohort below remains unchanged.
+Install this checkout with `python -m pip install '.[native,test]'` for the
+current text profile. Core 0.15.1 and ParticleGAN 0.11.0 are resolved from
+project metadata. [Scoped initialization and tagged native text](CURRENT.md)
+describes the current profile. The 32B pretrained model, GPU execution,
+output quality and LR tuning remain unqualified.
 
 ## Historical core0.14.0 CPU cohort
 
@@ -49,7 +47,7 @@ LoRA or loaded into stock vLLM. Keep the shared v2 artifact and this native host
 ## Historical installation (core0.14.0 cohort)
 
 These commands describe the historical checkout. For this checkout's distinct
-current profile and pinned environment, use [CURRENT-PG095.md](CURRENT-PG095.md).
+current profile and pinned environment, use [CURRENT.md](CURRENT.md).
 
 Use an isolated Python 3.11+ environment (official serving requires Linux/CUDA
 and Python 3.12). Install the shared distribution from reviewed commit

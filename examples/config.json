@@ -1,6 +1,6 @@
 {
   "backend": "sophon",
-  "cohort": "sophon-realtime-v1-core014-raw-v1",
+  "cohort": "sophon-realtime-v1-engine-raw-v1",
   "options": {
     "model_dir": "/models/Sophon-Realtime-v1",
     "source_dir": "/src/sophon-realtime",

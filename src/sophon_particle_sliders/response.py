@@ -4,8 +4,8 @@ from copy import deepcopy
 from dataclasses import dataclass
 
 import torch
-from particle_sliders.pg09_audio import PreparedAudioResponse
-from particle_sliders.pg09_backends import AdapterParameters
+from particle_sliders.audio import PreparedAudioResponse
+from particle_sliders.backends import AdapterParameters
 
 
 @dataclass(frozen=True)

@@ -1,28 +1,19 @@
-# Current fresh PG0.9.5 + tagged native text profile
+# Scoped initialization and tagged native text
 
-This Source adds `sophon095`; the old `sophon` implementation, original
-`core.lock.json`, example and CPU evidence remain historical and unchanged.
-On 2026-11-09, source commit `175edeeade49f1e4044dc76f6a7f156cb1928482`
-passed **nine relevant local CPU checks**, with zero failures/errors/skips,
-pip check exit 0, no CUDA initialization and no external pretrained/network
-attempts. See the [current CPU receipt and exact scope](evidence/current-pg095-cpu-qualification-20261109.md).
-The pretrained 32B model has not been loaded or qualified. This is not a
-pretrained-quality, GPU, realtime, audio-synthesis or LR-result qualification.
-No existing checkpoint, LR search or RAW export is reset, migrated or re-labelled.
+Install this checkout in a fresh environment. It pins Particle Sliders core
+0.15.1 at `c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78` and ParticleGAN 0.11.0.
+The `sophon_scoped` backend keeps the official Sophon source, frozen unmerged
+tag, full thinker coordinates and continuous penalty inputs. Its packaged
+`current_core.json` checks source hashes before model loading.
 
-Install public core41f6066f2d2644902670d5eb736de052e1a70553 (distribution0.14.1)
-and this product in a new isolated environment. `core-current.lock.json` and the
-packaged `current_core.json` pin eight actual public API Source files; new factory
-entry refuses differing same-version Source before loading weights. The official
-Sophon source67fe6cfc02616cec5a5a883b063bdefd7b31fc2b, offline base/tag loader,
-frozen unmerged tag and full LLM coordinates are unchanged. The new route explicitly
-declares `penalty_input_domain="continuous"`, including the full5120-wide thinker;
-it does not substitute projector coordinates or reduce the vocabulary/response.
+Use the original product revision and dependency pins to load earlier
+checkpoints. [November 9 CPU evidence](evidence/current-pg095-cpu-qualification-20261109.md)
+records the earlier source and dependency versions.
 
 ## Pinned environment and CPU checks
 
 Use a new Python 3.12 environment. The checked combination used Torch 2.9.1,
-ParticleGAN 0.9.5, NumPy 2.2.6, Transformers 4.57.6, PEFT 0.20.0 and Accelerate
+ParticleGAN 0.11.0, NumPy 2.2.6, Transformers 4.57.6, PEFT 0.20.0 and Accelerate
 1.15.0. A version number alone is insufficient for the shared core: install its
 exact commit above. From this product checkout, the following uses the actual
 declared public dependencies and tested API versions:
@@ -30,12 +21,11 @@ declared public dependencies and tested API versions:
 ```sh
 python -m pip install 'setuptools==84.2.1'
 python -m pip install \
-  'particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@41f6066f2d2644902670d5eb736de052e1a70553#subdirectory=packages/particle-sliders-core' \
-  'hypergan[train] @ git+https://github.com/HyperGAN/HyperGAN.git@5f368a3770cf5bdae0448995c9f76e29af8049f7' \
-  'torch==2.9.1' 'particlegan==0.9.5' 'numpy==2.2.6' \
+  'particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78#subdirectory=packages/particle-sliders-core' \
+  'torch==2.9.1' 'particlegan==0.11.0' 'numpy==2.2.6' \
   'transformers==4.57.6' 'peft==0.20.0' 'accelerate==1.15.0' \
   'librosa==0.11.0' 'soundfile==0.14.0' 'soxr==1.1.0' 'audioread==3.1.0' \
-  'safetensors==0.8.0' 'tokenizers==0.22.2' 'hndl==0.10.0' 'pytest==8.4.2' '.[native,test]'
+  'safetensors==0.8.0' 'tokenizers==0.22.2' 'pytest==8.4.2' '.[native,test]'
 git clone https://github.com/adventists-ai/sophon-realtime sophon-source
 git -C sophon-source checkout 67fe6cfc02616cec5a5a883b063bdefd7b31fc2b
 ```

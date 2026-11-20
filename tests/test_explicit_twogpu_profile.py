@@ -7,11 +7,11 @@ from particle_sliders.lifecycle import SessionConfig
 from conftest import SyntheticThinker,options,prompt,rows
 from test_lifecycle import equal
 from test_native_small import native_small
-from sophon_twogpu95 import backend as current
-from sophon_twogpu95.contract import SOURCE_PROFILE,INITIALIZATION_POLICY
-from sophon_twogpu95.placement import PLAN,OwnedTwoGPUAdmission,admitted,execution,module_map
-from sophon_twogpu95.response import SophonResponse
-from sophon_twogpu95.slider import SophonSlider
+from sophon_twogpu import backend as current
+from sophon_twogpu.contract import SOURCE_PROFILE,INITIALIZATION_POLICY
+from sophon_twogpu.placement import PLAN,OwnedTwoGPUAdmission,admitted,execution,module_map
+from sophon_twogpu.response import SophonResponse
+from sophon_twogpu.slider import SophonSlider
 
 
 def config_for(path):
@@ -19,9 +19,9 @@ def config_for(path):
     (path/'base/config.json').write_text('{"text_config":{"hidden_size":32}}')
     (path/'rows.jsonl').write_text('matched fixture rows')
     opts=dict(options(path),source_profile=SOURCE_PROFILE,initialization_policy=INITIALIZATION_POLICY,
-        pg_version='0.9.5',pg_source_profile='release-0.9.5',penalty_input_domain='continuous',
+        pg_version='0.11.0',pg_source_profile='release-0.11.0',penalty_input_domain='continuous',
         lr=.012,d_lr_mult=.5,prior_lr_mult=.75)
-    return SessionConfig('sophon095_twogpu','new-two-gpu-source-CPU-fixture',**opts)
+    return SessionConfig('sophon_explicit_twogpu','new-two-gpu-source-CPU-fixture',**opts)
 
 
 def native(options):
@@ -88,7 +88,7 @@ def test_exact_fresh_full_resume_raw_and_no_reinitialization(tmp_path,monkeypatc
         full.train();expected=full.checkpoint()
     with current.open_training(config)as first:
         first.train(stop_after=2);saved=first.checkpoint()
-    import sophon_twogpu95.initialization as init
+    import sophon_twogpu.initialization as init
     monkeypatch.setattr(init,'initialize_fresh_components',lambda *a,**k:pytest.fail('initialization during exact resume/inference'))
     with current.open_training(config,resume=saved)as resumed:
         assert resumed.game.completed_steps==2;resumed.train();equal(expected,resumed.checkpoint());artifact=resumed.export_inference()
@@ -104,7 +104,7 @@ def test_real_tiny_official_audio_text_uses_new_path(native_small,monkeypatch):
     identity=dict(old.model_identity,source_commit=LOCK['commit'])
     n=SophonResponse(old.model,SophonSlider(old.model,rank=4,particles=8,particle_dim=4,pg_device='cpu'),
         model_identity=identity,processor=SimpleNamespace(tokenizer=SimpleNamespace(decode=lambda ids,**k:' '.join(map(str,ids)))))
-    from sophon_twogpu95.finished_text import generate
+    from sophon_twogpu.finished_text import generate
     merged=[];original=n.model._merge_audio
     def observe(ids,embeds,values,lens,lengths):
         merged.append((values,lens,lengths));return original(ids,embeds,values,lens,lengths)
@@ -121,7 +121,7 @@ def test_real_tiny_official_audio_text_uses_new_path(native_small,monkeypatch):
 
 def test_real_differentiable_dispatch_hook_preserved_through_attachment():
     from accelerate.hooks import AlignDevicesHook,add_hook_to_module,remove_hook_from_module
-    from sophon_twogpu95.placement import validate_dispatch_hooks
+    from sophon_twogpu.placement import validate_dispatch_hooks
     model=SyntheticThinker().requires_grad_(False);model.get_input_embeddings=lambda:model.embed
     host=model.language_model.model.layers[0].self_attn.q_proj.base_layer
     add_hook_to_module(host,AlignDevicesHook(execution_device='cpu',offload=False))

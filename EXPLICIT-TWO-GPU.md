@@ -1,6 +1,6 @@
 # Explicit owned two-GPU Sophon cohort
 
-`sophon095_twogpu` / `sophon_twogpu95` is a new Source/cohort. Original `sophon`, CPU-qualified `sophon095`/175edee, their fourteen/nine CPU receipts, locks, states and CUDA refusals stay unchanged. Do not feed old FULL/RAW packets to this profile. This implementation is not yet CPU/GPU/pretrained qualified; the focused tests below are authored, not executed by the Source author.
+`sophon_explicit_twogpu` is the explicit two-device thinker backend. It uses core 0.15.1 and ParticleGAN 0.11.0. Use the original revisions for saved FULL and RAW packets from previous cohorts.
 
 The immutable official thinker/audio/tag implementation remains67fe6cf; weights remain original full local `base/` plus frozen active/unmerged `adapters/tag`. No ASR, hidden projection, quantization, offload, reduced response, automatic/balanced device map, EMA or changed PG penalty is introduced.
 
@@ -15,17 +15,17 @@ Use the product entry functions for CUDA. Registry preparation without its owner
 ```python
 from copy import deepcopy
 from particle_sliders.lifecycle import SessionConfig
-from sophon_twogpu95.backend import open_training, open_inference
-from sophon_twogpu95.contract import SOURCE_PROFILE, INITIALIZATION_POLICY
-from sophon_twogpu95.placement import PLAN, OwnedTwoGPUAdmission
+from sophon_twogpu.backend import open_training, open_inference
+from sophon_twogpu.contract import SOURCE_PROFILE, INITIALIZATION_POLICY
+from sophon_twogpu.placement import PLAN, OwnedTwoGPUAdmission
 
 # Supply actual Root execution-owner values, never fabricated example authority:
 owner = OwnedTwoGPUAdmission(deepcopy(PLAN), actual_owner_receipt, actual_live_owner_check)
-config = SessionConfig('sophon095_twogpu', 'unique-new-fresh-cohort',
+config = SessionConfig('sophon_explicit_twogpu', 'unique-new-fresh-cohort',
     model_dir='/exact/verified/original/model', source_dir='/exact/67fe/official/source',
     training_file='/exact/matched-native-audio-text.jsonl', device='cuda:1', placement=deepcopy(PLAN),
     base_precision='bfloat16', response_width=5120, rank=8, particles=128, particle_dim=4,
-    pg_version='0.9.5', pg_source_profile='release-0.9.5', penalty_input_domain='continuous',
+    pg_version='0.11.0', pg_source_profile='release-0.11.0', penalty_input_domain='continuous',
     source_profile=SOURCE_PROFILE, initialization_policy=INITIALIZATION_POLICY,
     ema_decay=None, steps=2, batch=2, seed=7,
     lr=.012, d_lr_mult=1.5, prior_lr_mult=2.5)

@@ -42,8 +42,8 @@ The historical public package captured at commit
 | Public entry | Supported recorded scope | Speech-result compatibility |
 | --- | --- | --- |
 | `sophon` | Historical thinker hidden response | Not this native speech cohort |
-| `sophon095` / `sophon-slider` | Current CPU tagged, audio-conditioned text; see [CURRENT-PG095](../CURRENT-PG095.md) | No waveform renderer |
-| `sophon095_twogpu` / `sophon_twogpu95` | Explicit owned two-GPU tagged text; see [EXPLICIT-TWO-GPU](../EXPLICIT-TWO-GPU.md) | Text outputs only |
+| `sophon_scoped` / `sophon-slider` | Current CPU tagged, audio-conditioned text; see [CURRENT](../CURRENT.md) | No waveform renderer |
+| `sophon_explicit_twogpu` / `sophon_twogpu` | Explicit owned two-GPU tagged text; see [EXPLICIT-TWO-GPU](../EXPLICIT-TWO-GPU.md) | Text outputs only |
 
 The measured speech implementation originates in captured source
 `fcb157549099515b7269d2f56119eadf0266eeaf`, namespace `sophon_speech95`, source

@@ -15,13 +15,13 @@ import torch
 from torch import nn
 from particle_sliders.adapter_activation import push_activation, restore_activation
 from particle_sliders.adapter_attachment import atomic_attachment
-from particle_sliders.pg09_audio import PreparedAudioResponse
-from particle_sliders.pg09_backends import AdapterParameters
+from particle_sliders.audio import PreparedAudioResponse
+from particle_sliders.backends import AdapterParameters
 from particle_sliders.routed_projection import TinyParticleProjection
 
 
 WIDTH = 5120
-_OWNER = "_sophon_speech95_reg_owner"
+_OWNER = "_sophon_speech_reg_owner"
 
 
 def _frame(value, *, device=None):
