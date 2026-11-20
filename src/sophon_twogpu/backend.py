@@ -1,12 +1,12 @@
-"""Distinct prospective PG095/fresh-init cohort; old sophon Source is untouched."""
+"""Scoped initialization for the current ParticleGAN engine."""
 from copy import deepcopy
 from pathlib import Path
 
 import torch
 from particle_sliders.inference import InferenceBackend, InferenceBinding, native_identity
 from particle_sliders.lifecycle import Binding, Capabilities, read_packet
-from particle_sliders.pg095 import ConditionalPG095, engine_options
-from particle_sliders.pg09_audio import AudioResponseCritic
+from particle_sliders.engine import ConditionalParticleGAN, engine_options
+from particle_sliders.audio import AudioResponseCritic
 from particle_sliders.response import ResponseBackend, ResponseCapabilities
 from .contract import (BACKEND, DEFAULTS, INITIALIZATION_POLICY, PROTOCOL,
     SOURCE_PROFILE, WEIGHT_POLICY, architecture, digest, rate_overrides, validate_profile,
@@ -19,7 +19,7 @@ from sophon_particle_sliders.data import read_rows
 
 class CurrentResponse:
     """Own the original native host; add only new-cohort provenance/text callback."""
-    family = 'sophon095_explicit_two_gpu_tagged_thinker'
+    family = 'sophon_scoped_explicit_two_gpu_tagged_thinker'
 
     def __init__(self, native):
         self.runtime = native
@@ -51,9 +51,9 @@ class CurrentResponse:
 
 def capabilities(options):
     return ResponseCapabilities('routed_particle_gan', 'speech', 'sophon_thinker_final_token_hidden',
-        'continuous_vector', (1, architecture(options)['response_width']), '0.9.5', 'release-0.9.5',
+        'continuous_vector', (1, architecture(options)['response_width']), '0.11.0', 'release-0.11.0',
         penalty_input_domain='continuous', base_precisions=('float32', 'bfloat16'),
-        qualification='New PG095/fresh-init Source; native CPU/pretrained/finished-text quality pending')
+        qualification='Scoped initialization; native CPU/pretrained/finished-text quality pending')
 
 
 TEXT_CAPABILITIES = Capabilities('routed_particle_gan', render=True,
@@ -97,7 +97,7 @@ def prepare_training(options, *, construction=None):
         owned=[p for root in (current.slider,critic)for p in root.parameters()if p.requires_grad]
         if not owned or any(p.device!=native.pg_device or p.dtype!=torch.float32 for p in owned):
             raise ValueError('every PG trainable must be FP32 on the one declared PG device before optimizers')
-        game = ConditionalPG095(current, rows, critic, conditions=cond,
+        game = ConditionalParticleGAN(current, rows, critic, conditions=cond,
             particles=current.network.particles, response_domain='continuous_vector',
             total_steps=options.get('steps', 4), batch_size=options.get('batch', 2), seed=options.get('seed', 7),
             recipe_overrides=rate_overrides(options), **engine_options(options))
@@ -120,7 +120,7 @@ def validate_inference(options, spec):
     if (set(c) != {'architecture', 'source_profile', 'initialization_policy', 'weight_policy', 'initialization','placement'}
             or c['source_profile'] != SOURCE_PROFILE or c['initialization_policy'] != INITIALIZATION_POLICY
             or c['weight_policy'] != WEIGHT_POLICY or spec.identity['protocol'] != PROTOCOL):
-        raise ValueError('requires original new Sophon095 RAW artifact; historical packets are not migrated')
+        raise ValueError('requires original new Scoped Sophon RAW artifact; historical packets are not migrated')
     validate_receipt(c['initialization'], cohort=c['initialization'].get('cohort_id'))
     # Reuse original validation without a teacher-file requirement or init call.
     from .placement import validate_local

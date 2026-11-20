@@ -86,7 +86,7 @@ def generate(native, *, prompt=None, messages=None, audios=(), max_tokens=4096,
     # Keep sound tags and native EOS visible; a legal EOS/truncation is not a
     # failed candidate and this function supplies no quality judgment.
     text = native.processor.tokenizer.decode(tokens, skip_special_tokens=False)
-    return TextOutput(text, dict(schema='sophon095-explicit-two-gpu-native-text-generation-v1',
+    return TextOutput(text, dict(schema='sophon_scoped-explicit-two-gpu-native-text-generation-v1',
         source_commit=native.model_identity['source_commit'], selection='raw', weight_EMA=None,
         tag_adapter='frozen, active', prompt_tokens=length, audio_chunks=int(prompt.get('audio_lens', torch.empty(0)).numel()),
         new_token_ids=tokens, max_new_tokens=max_new_tokens, strength=strength, seed=seed,

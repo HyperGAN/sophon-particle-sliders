@@ -3,7 +3,7 @@ import torch
 from sophon_particle_sliders.response import SophonResponse as OriginalResponse,conditions
 
 class SophonResponse(OriginalResponse):
-    family='sophon095_explicit_two_gpu_native_thinker'
+    family='sophon_scoped_explicit_two_gpu_native_thinker'
     def __init__(self,*args,admission=None,**kwargs):
         super().__init__(*args,**kwargs);self.admission=admission
         self.entry_device=self.model.get_input_embeddings().weight.device

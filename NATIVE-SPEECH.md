@@ -1,27 +1,27 @@
 # Native Sophon speech: owner-supplied Python API
 
-The `sophon_speech95` backend produces original Sophon speech through its full
+The `sophon_speech` backend produces original Sophon speech through its full
 64-layer BF16 base, frozen tag adapter and original E2/HiFT decoder. It trains
 the added reg branch, critic and 128×4 bank on full 5120-coordinate native acoustic
-responses using ParticleGAN 0.9.5/core 0.14.1. All model-weight EMA is disabled.
+responses using ParticleGAN 0.11.0/core 0.15.1. All model-weight EMA is disabled.
 The older tagged-text backends and their checkpoints remain separate. See the
 [speech attribution and historical notice scope](NOTICE-SPEECH.md).
 
 This interface needs an execution owner supplied by your runner. The library
 does not acquire devices, reserve memory, download models or create admission.
 The `sophon-speech-slider` console entry deliberately refuses without an owner;
-your runner can call `sophon_speech95.cli.main(argv, admission=owner)`. A receipt
+your runner can call `sophon_speech.cli.main(argv, admission=owner)`. A receipt
 string, configuration flag or generic training command is insufficient.
 
 ## Dependencies and original assets
 
 Install the package's `native-speech` extra in your owned environment. This
 captured profile additionally checks exact core API bytes from
-[`41f6066f2d2644902670d5eb736de052e1a70553`](https://github.com/HyperGAN/particle-sliders/tree/41f6066f2d2644902670d5eb736de052e1a70553),
+[`c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78`](https://github.com/HyperGAN/particle-sliders/tree/c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78),
 not just a compatible version label. Its locks are
-[current_core.json](src/sophon_speech95/current_core.json),
-[upstream.json](src/sophon_speech95/upstream.json) and
-[model_files.json](src/sophon_speech95/model_files.json).
+[current_core.json](src/sophon_speech/current_core.json),
+[upstream.json](src/sophon_speech/upstream.json) and
+[model_files.json](src/sophon_speech/model_files.json).
 
 Stage the original source at
 [`67fe6cfc02616cec5a5a883b063bdefd7b31fc2b`](https://github.com/adventists-ai/sophon-realtime/tree/67fe6cfc02616cec5a5a883b063bdefd7b31fc2b)
@@ -41,7 +41,7 @@ and locks; there is no implicit source or checkpoint migration.
 ## Supply a real owner
 
 Your runner supplies an `OwnedTwoGPUAdmission` from
-[placement.py](src/sophon_speech95/placement.py), backed by its actual ownership
+[placement.py](src/sophon_speech/placement.py), backed by its actual ownership
 receipt and live check. Its plan must equal `PLAN`, and visible devices must be
 the explicitly owned physical 0/1 pair (`CUDA_VISIBLE_DEVICES=0,1`). The live check
 must enforce that runner's caps, memory floors and lifetime. The default plan
@@ -54,7 +54,7 @@ owner is a live ownership hook, not a replacement for that runner lifecycle.
 These functions accept that already-created owner; none manufactures one:
 
 ```python
-from sophon_speech95.cli import cache, train, render
+from sophon_speech.cli import cache, train, render
 
 def capture_missing_cache(owner, native_options, declared_cases, new_cache_dir):
     return cache(native_options, declared_cases, new_cache_dir, admission=owner)
@@ -84,16 +84,16 @@ forced event or mismatched text/history. Training requires at least two genuine
 matched rows. Reuse a completed cache; an incomplete or unknown call is not
 permission to execute it again.
 
-Build a `SessionConfig` with backend `sophon_speech95`, your explicit cohort and
+Build a `SessionConfig` with backend `sophon_speech`, your explicit cohort and
 these option members in addition to the local roots/placement and actual saved
 cache FileRecord (`cache_file`, `cache_bytes`, `cache_sha256`):
 
 ```json
 {
-  "source_profile": "sophon-original-speech-reg5120-pg095-v1",
+  "source_profile": "sophon-original-speech-reg5120-engine-v1",
   "initialization_policy": "sophon-speech-fresh-Kaiming-QR-zeroUP-bankR2std01-v1",
-  "pg_version": "0.9.5",
-  "pg_source_profile": "release-0.9.5",
+  "pg_version": "0.11.0",
+  "pg_source_profile": "release-0.11.0",
   "penalty_input_domain": "continuous",
   "ema_decay": null,
   "rank": 8,
@@ -110,7 +110,7 @@ cache FileRecord (`cache_file`, `cache_bytes`, `cache_sha256`):
 }
 ```
 
-Use `sophon_speech95.backend.open_training(config, admission=owner, resume=full)`
+Use `sophon_speech.backend.open_training(config, admission=owner, resume=full)`
 or the `train` wrapper above. That wrapper declares fresh/restore intent before
 allocation and optimizer construction; direct generic backend dispatch lacks
 this required construction context. Fresh mode scopes only the owned Parameters,
@@ -148,7 +148,7 @@ there is no bitwise CUDA equivalence or fit claim.
 ```python
 def render_mixed(owner, raw, local_options, new_output_dir, *, text, seed=7):
     owner.check()  # Runner has already authorized imports and acquired ownership.
-    from sophon_speech95 import backend, native
+    from sophon_speech import backend, native
     from sophon_speech_execution import mixed_execution as mixed
     request = dict(text=text, language="en")
     # The callback is active only during original factory construction/RAW load.

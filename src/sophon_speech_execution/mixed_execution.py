@@ -19,7 +19,7 @@ def device(index,count=64):
 
 @contextmanager
 def construction(native):
-    from sophon_speech95 import placement
+    from sophon_speech import placement
     with _LOCK:
         original=native.layer_device
         if original is not placement.layer_device:raise RuntimeError('Exact original constructor device callback required')
@@ -39,8 +39,8 @@ def construction(native):
 
 def describe(inference,construction_witness,check):
     import torch
-    from sophon_speech95 import native as module,placement
-    from sophon_speech95.backend import CurrentResponse
+    from sophon_speech import native as module,placement
+    from sophon_speech.backend import CurrentResponse
     current=getattr(inference.binding.close,'__self__',None)
     if type(current)is not CurrentResponse or type(current.runtime)is not module.NativeRuntime:
         raise RuntimeError('Original strict shared RAW factory only')

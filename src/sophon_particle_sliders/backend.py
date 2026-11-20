@@ -4,14 +4,14 @@ import json
 from pathlib import Path
 
 import torch
-from particle_sliders import pg09
+from particle_sliders import engine
 from particle_sliders.inference import (
     InferenceBackend,
     InferenceBinding,
     native_identity,
 )
 from particle_sliders.lifecycle import Binding
-from particle_sliders.pg09_audio import AudioResponseCritic
+from particle_sliders.audio import AudioResponseCritic
 from particle_sliders.response import ResponseBackend, ResponseCapabilities
 
 from .data import read_rows
@@ -39,8 +39,8 @@ def capabilities(options):
         "sophon_thinker_final_token_hidden",
         "continuous_vector",
         (1, options.get("response_width", 5120)),
-        pg09.PG_VERSION,
-        pg09.PG_SOURCE_PROFILE,
+        engine.PG_VERSION,
+        engine.PG_SOURCE_PROFILE,
         base_precisions=("float32", "bfloat16"),
         qualification="CPU synthetic/native-small execution only; pretrained model, realtime and quality unqualified",
     )
@@ -73,6 +73,8 @@ def validate_native(options):
 
 
 def validate_training(options):
+    if options.get("ema_decay") is not None or options.get("ema") is not None:
+        raise ValueError("Sophon requires RAW weights with ema_decay=None")
     validate_native(options)
     if not Path(options["training_file"]).is_file():
         raise ValueError("local matched JSONL training_file required")
@@ -96,7 +98,7 @@ def prepare_training(options):
         critic = AudioResponseCritic(native.width, cond.shape[1]).to(
             next(native.network.parameters()).device
         )
-        game = pg09.ConditionalPG09(
+        game = engine.ConditionalParticleGAN(
             native,
             rows,
             critic,

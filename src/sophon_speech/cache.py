@@ -8,7 +8,7 @@ from pathlib import Path
 import copy,hashlib,json,os,random,types
 import numpy as np
 import torch
-from particle_sliders.pg09_audio import PreparedAudioResponse
+from particle_sliders.audio import PreparedAudioResponse
 from .acoustic_response import AcousticRow
 from .native import frozen_environment
 

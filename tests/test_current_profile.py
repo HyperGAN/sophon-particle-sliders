@@ -17,8 +17,8 @@ def current_options(tmp_path):
     (tmp_path/'base/config.json').write_text('{"text_config":{"hidden_size":32}}')
     (tmp_path/'rows.jsonl').write_text('matched fixture rows')
     return dict(options(tmp_path), source_profile=SOURCE_PROFILE,
-        initialization_policy=INITIALIZATION_POLICY, pg_version='0.9.5',
-        pg_source_profile='release-0.9.5', penalty_input_domain='continuous')
+        initialization_policy=INITIALIZATION_POLICY, pg_version='0.11.0',
+        pg_source_profile='release-0.11.0', penalty_input_domain='continuous')
 
 
 def test_actual_current_core_source_identity():
@@ -36,7 +36,7 @@ def test_exact_common_literals_and_refusals():
 def test_new_fresh_full_resume_raw_and_initializer_boundary(tmp_path, monkeypatch):
     opts = current_options(tmp_path)
     opts.update(lr=.012, d_lr_mult=.5, prior_lr_mult=.75)
-    config = SessionConfig('sophon095', 'new-synthetic-fresh-v1', **opts)
+    config = SessionConfig('sophon_scoped', 'new-synthetic-fresh-v1', **opts)
     monkeypatch.setattr(current, 'load_native', native)
     monkeypatch.setattr(current, 'read_rows', lambda *a, **kw: rows())
     with current.open_training(config) as full:
@@ -66,7 +66,7 @@ def test_new_fresh_full_resume_raw_and_initializer_boundary(tmp_path, monkeypatc
 
 
 def test_missing_intent_and_legacy_packet_refuse_before_allocation(tmp_path,monkeypatch):
-    config=SessionConfig('sophon095','new-fresh',**current_options(tmp_path))
+    config=SessionConfig('sophon_scoped','new-fresh',**current_options(tmp_path))
     monkeypatch.setattr(current,'load_native',lambda *a:pytest.fail('native allocation before intent refusal'))
     with pytest.raises(ValueError,match='intent'):current.TRAINING.open(config)
     bad=deepcopy(config.as_dict());bad['options']['recipe_overrides']={'lr':.01}

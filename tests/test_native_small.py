@@ -5,8 +5,8 @@ import os
 import pytest
 import torch
 from conftest import rows
-from particle_sliders import pg09
-from particle_sliders.pg09_audio import AudioResponseCritic
+from particle_sliders import engine
+from particle_sliders.audio import AudioResponseCritic
 
 from sophon_particle_sliders.native import official_modules
 from sophon_particle_sliders.response import SophonResponse, conditions
@@ -94,7 +94,7 @@ def test_native_small_shared_game_update_and_exact_resume(native_small):
     prepared = [n.prepare(row) for row in rows()]
     cond = conditions(prepared)
     torch.manual_seed(9)
-    game = pg09.ConditionalPG09(
+    game = engine.ConditionalParticleGAN(
         n,
         prepared,
         AudioResponseCritic(32, cond.shape[1]),

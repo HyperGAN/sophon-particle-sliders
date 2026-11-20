@@ -1,13 +1,13 @@
 """Exact new speech cohort. No historical text-packet migration or implicit EMA."""
 from pathlib import Path
 import hashlib,json,math
-BACKEND='sophon_speech95'
-SOURCE_PROFILE='sophon-original-speech-reg5120-pg095-v1'
+BACKEND='sophon_speech'
+SOURCE_PROFILE='sophon-original-speech-reg5120-engine-v1'
 PROTOCOL='sophon-original-native-KF-reg5120-E2-HiFT24k-v1'
 INITIALIZATION_POLICY='sophon-speech-fresh-Kaiming-QR-zeroUP-bankR2std01-v1'
 WEIGHT_POLICY='raw-no-weight-EMA'
 DEFAULTS=dict(rank=8,particles=128,particle_dim=4,response_width=5120,base_precision='bfloat16')
-CORE_REVISION='41f6066f2d2644902670d5eb736de052e1a70553'
+CORE_REVISION='c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78'
 
 def digest(v):return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
 def file_hash(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -18,7 +18,7 @@ def rate_overrides(options):
     return values
 
 def validate_profile(options):
-    if any(options.get(k)!=v for k,v in dict(source_profile=SOURCE_PROFILE,initialization_policy=INITIALIZATION_POLICY,pg_version='0.9.5',pg_source_profile='release-0.9.5',penalty_input_domain='continuous').items()):raise ValueError('explicit original-speech/current095 source profile required')
+    if any(options.get(k)!=v for k,v in dict(source_profile=SOURCE_PROFILE,initialization_policy=INITIALIZATION_POLICY,pg_version='0.11.0',pg_source_profile='release-0.11.0',penalty_input_domain='continuous').items()):raise ValueError('explicit original-speech/current engine source profile required')
     if options.get('ema_decay')is not None or options.get('ema')is not None:raise ValueError('all weight EMA refused')
     if architecture(options)!=DEFAULTS:raise ValueError('full native5120, rank8/128x4, original BF16 base/FP32 heads only')
     rate_overrides(options)

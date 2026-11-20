@@ -4,8 +4,8 @@ import torch
 from particle_sliders.lifecycle import Binding,Capabilities,read_packet
 from particle_sliders.response import ResponseBackend,ResponseCapabilities
 from particle_sliders.inference import InferenceBackend,InferenceBinding,native_identity
-from particle_sliders.pg095 import ConditionalPG095,engine_options
-from particle_sliders.pg09_audio import AudioResponseCritic
+from particle_sliders.engine import ConditionalParticleGAN,engine_options
+from particle_sliders.audio import AudioResponseCritic
 from .contract import BACKEND,SOURCE_PROFILE,PROTOCOL,INITIALIZATION_POLICY,WEIGHT_POLICY,DEFAULTS,architecture,digest,rate_overrides,validate_options,validate_installed_core
 from .initialization import Construction,construction_for,initialize_owned,validate_receipt
 from .native import NativeRuntime,HeadRuntime
@@ -24,7 +24,7 @@ class CurrentResponse:
     def metadata(self):return dict(self.response_adapter.metadata(),source_profile=SOURCE_PROFILE,initialization_policy=INITIALIZATION_POLICY,fresh_initialization=self.fresh_initialization,weight_policy=WEIGHT_POLICY,penalty_input_domain='continuous',native_cache_identity=self.cache_identity)
     def close(self):self.runtime.close()
 
-def capabilities(options):return ResponseCapabilities('routed_particle_gan','speech','sophon_original_native_KF_acoustic_frame','continuous_vector',(1,5120),'0.9.5','release-0.9.5',penalty_input_domain='continuous',base_precisions=('bfloat16',),qualification='New speech software unexecuted; full original acoustic response, no speech quality/effect qualification')
+def capabilities(options):return ResponseCapabilities('routed_particle_gan','speech','sophon_original_native_KF_acoustic_frame','continuous_vector',(1,5120),'0.11.0','release-0.11.0',penalty_input_domain='continuous',base_precisions=('bfloat16',),qualification='New speech software unexecuted; full original acoustic response, no speech quality/effect qualification')
 AUDIO=Capabilities('routed_particle_gan',render=True,render_outputs=('audio',),operations=('response','render'),qualification='Original full E2/HiFT native24k EOS audio Source, not executed qualification')
 def validate_training(options):validate_options(options,training=True);validate_installed_core()
 def preflight(options,request,staged):
@@ -44,7 +44,7 @@ def prepare_training(options,*,construction=None):
             seed_initialization_rng(options.get('seed',7),[]if native.pg_device.type=='cpu'else[0,1]);critic=AudioResponseCritic(5120,5120).float().to(native.pg_device)
             receipt=initialize_owned(current.slider,critic,construction,options);current.fresh_initialization=receipt.as_dict()
         if any(p.device!=native.pg_device or p.dtype!=torch.float32 for root in (current.slider,critic)for p in root.parameters()if p.requires_grad):raise ValueError('all PG trainables must remain original FP32 objects on PGdevice')
-        game=ConditionalPG095(current,rows,critic,conditions=cond,particles=current.network.particles,response_domain='continuous_vector',total_steps=options.get('steps',128),batch_size=options.get('batch',2),seed=options.get('seed',7),recipe_overrides=rate_overrides(options),**engine_options(options))
+        game=ConditionalParticleGAN(current,rows,critic,conditions=cond,particles=current.network.particles,response_domain='continuous_vector',total_steps=options.get('steps',128),batch_size=options.get('batch',2),seed=options.get('seed',7),recipe_overrides=rate_overrides(options),**engine_options(options))
         spec=INFERENCE.specification(current,model_identity=current.model_identity,protocol=PROTOCOL,configuration=dict(architecture=architecture(options),source_profile=SOURCE_PROFILE,initialization_policy=INITIALIZATION_POLICY,weight_policy=WEIGHT_POLICY,initialization=receipt.as_dict(),placement=options['placement']))
         return Binding(game,current.close,inference=spec,before_update=lambda state:native.owner.check())
     except BaseException as primary:
@@ -72,7 +72,7 @@ def prepare_inference(options,spec):
     runtime_options=dict(options,**configuration['architecture'],
         source_profile=configuration['source_profile'],
         initialization_policy=configuration['initialization_policy'],
-        pg_version='0.9.5',pg_source_profile='release-0.9.5',
+        pg_version='0.11.0',pg_source_profile='release-0.11.0',
         penalty_input_domain='continuous',ema_decay=None)
     native=NativeRuntime(runtime_options)
     try:
