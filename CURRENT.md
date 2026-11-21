@@ -107,6 +107,15 @@ is unchanged; no text-only fallback is permitted. Seed/RNG and slider scales are
 scoped. Sound tags and native EOS tokens are preserved in decoded text. A legal
 EOS or length-bound truncation is not classified as catastrophic here.
 
+For an open `sophon_scoped` or `sophon_explicit_twogpu` RAW session, call
+`sophon_particle_sliders.scheduled_text.render(session, step_gains=gains, ...)`
+with the native render arguments. Supply a gain for each possible output token.
+The first gain covers the packed prompt. Every later position keeps its gain
+when the thinker recomputes the prefix. Each call keeps the original audio
+conditioning and the frozen tag adapter active. The finished-text sidecar
+records the strengths applied through native EOS. The pretrained effect
+comparison is pending.
+
 ```python
 from particle_sliders.inference import open_inference
 runtime = {"model_dir": "/models/Sophon-Realtime-v1", "source_dir": "/src/sophon-realtime", "device": "cpu"}
