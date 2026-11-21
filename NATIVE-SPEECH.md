@@ -174,3 +174,21 @@ recorded as an empty native result, not described as playable speech. The librar
 does not normalize waveforms, substitute ASR/hidden vectors, rerate outputs or
 issue a categorical guard/semantic qualification. Your runner owns durable
 completion accounting and cleanup; an unknown render claim must not auto-retry.
+
+## Scheduled acoustic strength
+
+For an open RAW speech inference session, call `sophon_speech.scheduled_audio.render`
+with `frame_gains` and the original native render arguments. Gains apply in
+acoustic-frame order. The last gain repeats through native EOS. Each
+`strength * gain` must be within `[0, 1]`.
+
+```python
+from sophon_speech.scheduled_audio import render
+
+receipt = render(session, text=text, seed=7, strength=0.5,
+                 frame_gains=[1.5] * 8 + [0.5], durable_directory=destination)
+```
+
+The original renderer saves the native audio and a separate
+`scheduled-strength.json` records the applied strengths. The new scope passed
+a CPU acoustic-event fixture. A matched native speech comparison is pending.
