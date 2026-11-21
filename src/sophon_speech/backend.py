@@ -24,7 +24,7 @@ class CurrentResponse:
     def metadata(self):return dict(self.response_adapter.metadata(),source_profile=SOURCE_PROFILE,initialization_policy=INITIALIZATION_POLICY,fresh_initialization=self.fresh_initialization,weight_policy=WEIGHT_POLICY,penalty_input_domain='continuous',native_cache_identity=self.cache_identity)
     def close(self):self.runtime.close()
 
-def capabilities(options):return ResponseCapabilities('routed_particle_gan','speech','sophon_original_native_KF_acoustic_frame','continuous_vector',(1,5120),'0.11.0','release-0.11.0',penalty_input_domain='continuous',base_precisions=('bfloat16',),qualification='New speech software unexecuted; full original acoustic response, no speech quality/effect qualification')
+def capabilities(options):return ResponseCapabilities('routed_particle_gan','speech','sophon_original_native_KF_acoustic_frame','continuous_vector',(1,5120),'0.11.1','release-0.11.1',penalty_input_domain='continuous',base_precisions=('bfloat16',),qualification='New speech software unexecuted; full original acoustic response, no speech quality/effect qualification')
 AUDIO=Capabilities('routed_particle_gan',render=True,render_outputs=('audio',),operations=('response','render'),qualification='Original full E2/HiFT native24k EOS audio Source, not executed qualification')
 def validate_training(options):validate_options(options,training=True);validate_installed_core()
 def preflight(options,request,staged):
@@ -72,7 +72,7 @@ def prepare_inference(options,spec):
     runtime_options=dict(options,**configuration['architecture'],
         source_profile=configuration['source_profile'],
         initialization_policy=configuration['initialization_policy'],
-        pg_version='0.11.0',pg_source_profile='release-0.11.0',
+        pg_version='0.11.1',pg_source_profile='release-0.11.1',
         penalty_input_domain='continuous',ema_decay=None)
     native=NativeRuntime(runtime_options)
     try:

@@ -3,7 +3,7 @@
 The `sophon_speech` backend produces original Sophon speech through its full
 64-layer BF16 base, frozen tag adapter and original E2/HiFT decoder. It trains
 the added reg branch, critic and 128×4 bank on full 5120-coordinate native acoustic
-responses using ParticleGAN 0.11.0/core 0.15.1. All model-weight EMA is disabled.
+responses using ParticleGAN 0.11.1/core 0.15.2. All model-weight EMA is disabled.
 The older tagged-text backends and their checkpoints remain separate. See the
 [speech attribution and historical notice scope](NOTICE-SPEECH.md).
 
@@ -17,7 +17,7 @@ string, configuration flag or generic training command is insufficient.
 
 Install the package's `native-speech` extra in your owned environment. This
 captured profile additionally checks exact core API bytes from
-[`c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78`](https://github.com/HyperGAN/particle-sliders/tree/c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78),
+[`ec1161f5d74481be3540cb0dfa63d0e8f8b54e90`](https://github.com/HyperGAN/particle-sliders/tree/ec1161f5d74481be3540cb0dfa63d0e8f8b54e90),
 not just a compatible version label. Its locks are
 [current_core.json](src/sophon_speech/current_core.json),
 [upstream.json](src/sophon_speech/upstream.json) and
@@ -92,8 +92,8 @@ cache FileRecord (`cache_file`, `cache_bytes`, `cache_sha256`):
 {
   "source_profile": "sophon-original-speech-reg5120-engine-v1",
   "initialization_policy": "sophon-speech-fresh-Kaiming-QR-zeroUP-bankR2std01-v1",
-  "pg_version": "0.11.0",
-  "pg_source_profile": "release-0.11.0",
+  "pg_version": "0.11.1",
+  "pg_source_profile": "release-0.11.1",
   "penalty_input_domain": "continuous",
   "ema_decay": null,
   "rank": 8,

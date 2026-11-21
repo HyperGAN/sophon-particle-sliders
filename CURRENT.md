@@ -1,19 +1,19 @@
 # Scoped initialization and tagged native text
 
 Install this checkout in a fresh environment. It pins Particle Sliders core
-0.15.1 at `c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78` and ParticleGAN 0.11.0.
+0.15.2 at `ec1161f5d74481be3540cb0dfa63d0e8f8b54e90` and ParticleGAN 0.11.1.
 The `sophon_scoped` backend keeps the official Sophon source, frozen unmerged
 tag, full thinker coordinates and continuous penalty inputs. Its packaged
 `current_core.json` checks source hashes before model loading.
 
 Use the original product revision and dependency pins to load earlier
-checkpoints. [November 9 CPU evidence](evidence/current-pg095-cpu-qualification-20261109.md)
+checkpoints. [November 9 CPU evidence](https://github.com/HyperGAN/sophon-particle-sliders/blob/9c6ca508c8fb66cac9fc07263e87199d4a98e844/evidence/current-pg095-cpu-qualification-20261109.md)
 records the earlier source and dependency versions.
 
 ## Pinned environment and CPU checks
 
 Use a new Python 3.12 environment. The checked combination used Torch 2.9.1,
-ParticleGAN 0.11.0, NumPy 2.2.6, Transformers 4.57.6, PEFT 0.20.0 and Accelerate
+ParticleGAN 0.11.1, NumPy 2.2.6, Transformers 4.57.6, PEFT 0.20.0 and Accelerate
 1.15.0. A version number alone is insufficient for the shared core: install its
 exact commit above. From this product checkout, the following uses the actual
 declared public dependencies and tested API versions:
@@ -21,8 +21,8 @@ declared public dependencies and tested API versions:
 ```sh
 python -m pip install 'setuptools==84.2.1'
 python -m pip install \
-  'particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78#subdirectory=packages/particle-sliders-core' \
-  'torch==2.9.1' 'particlegan==0.11.0' 'numpy==2.2.6' \
+  'particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@ec1161f5d74481be3540cb0dfa63d0e8f8b54e90#subdirectory=packages/particle-sliders-core' \
+  'torch==2.9.1' 'particlegan==0.11.1' 'numpy==2.2.6' \
   'transformers==4.57.6' 'peft==0.20.0' 'accelerate==1.15.0' \
   'librosa==0.11.0' 'soundfile==0.14.0' 'soxr==1.1.0' 'audioread==3.1.0' \
   'safetensors==0.8.0' 'tokenizers==0.22.2' 'pytest==8.4.2' '.[native,test]'
@@ -32,7 +32,7 @@ git -C sophon-source checkout 67fe6cfc02616cec5a5a883b063bdefd7b31fc2b
 
 The qualification used a separately admitted private prefix and read-only
 dependencies, not a global/captured-environment upgrade. Its complete actual
-version summary is in the [portable evidence JSON](evidence/current-pg095-cpu-qualification-20261109.json).
+version summary is in the [portable evidence JSON](https://github.com/HyperGAN/sophon-particle-sliders/blob/9c6ca508c8fb66cac9fc07263e87199d4a98e844/evidence/current-pg095-cpu-qualification-20261109.json).
 To reproduce just the nine checks on tiny random models, no pretrained weights
 are needed:
 

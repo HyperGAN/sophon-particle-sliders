@@ -17,8 +17,8 @@ def current_options(tmp_path):
     (tmp_path/'base/config.json').write_text('{"text_config":{"hidden_size":32}}')
     (tmp_path/'rows.jsonl').write_text('matched fixture rows')
     return dict(options(tmp_path), source_profile=SOURCE_PROFILE,
-        initialization_policy=INITIALIZATION_POLICY, pg_version='0.11.0',
-        pg_source_profile='release-0.11.0', penalty_input_domain='continuous')
+        initialization_policy=INITIALIZATION_POLICY, pg_version='0.11.1',
+        pg_source_profile='release-0.11.1', penalty_input_domain='continuous')
 
 
 def test_actual_current_core_source_identity():

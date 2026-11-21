@@ -19,7 +19,7 @@ def config_for(path):
     (path/'base/config.json').write_text('{"text_config":{"hidden_size":32}}')
     (path/'rows.jsonl').write_text('matched fixture rows')
     opts=dict(options(path),source_profile=SOURCE_PROFILE,initialization_policy=INITIALIZATION_POLICY,
-        pg_version='0.11.0',pg_source_profile='release-0.11.0',penalty_input_domain='continuous',
+        pg_version='0.11.1',pg_source_profile='release-0.11.1',penalty_input_domain='continuous',
         lr=.012,d_lr_mult=.5,prior_lr_mult=.75)
     return SessionConfig('sophon_explicit_twogpu','new-two-gpu-source-CPU-fixture',**opts)
 

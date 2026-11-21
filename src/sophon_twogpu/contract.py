@@ -4,7 +4,7 @@ import json
 import math
 from pathlib import Path
 
-CORE_REVISION = 'c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78'
+CORE_REVISION = 'ec1161f5d74481be3540cb0dfa63d0e8f8b54e90'
 SOURCE_PROFILE = 'sophon-explicit-two-gpu-current engine-fresh-v1'
 INITIALIZATION_POLICY = 'sophon-twogpu-kaiming-RMS-QR-zero-up-bank-R2-std01-v1'
 PROTOCOL = 'sophon_scoped-explicit-two-gpu-native-audio-text-v1'
@@ -36,10 +36,10 @@ def rate_overrides(options):
 def validate_profile(options):
     if (options.get('source_profile') != SOURCE_PROFILE
             or options.get('initialization_policy') != INITIALIZATION_POLICY
-            or options.get('pg_version') != '0.11.0'
-            or options.get('pg_source_profile') != 'release-0.11.0'
+            or options.get('pg_version') != '0.11.1'
+            or options.get('pg_source_profile') != 'release-0.11.1'
             or options.get('penalty_input_domain') != 'continuous'):
-        raise ValueError('explicit new Sophon PG0.11.0 fresh-init/continuous source profile required')
+        raise ValueError('explicit new Sophon PG0.11.1 fresh-init/continuous source profile required')
     if options.get('ema_decay') is not None or options.get('ema') is not None:
         raise ValueError('Scoped Sophon refuses all model-weight EMA')
     rate_overrides(options)

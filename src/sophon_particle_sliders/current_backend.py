@@ -47,7 +47,7 @@ class CurrentResponse:
 
 def capabilities(options):
     return ResponseCapabilities('routed_particle_gan', 'speech', 'sophon_thinker_final_token_hidden',
-        'continuous_vector', (1, architecture(options)['response_width']), '0.11.0', 'release-0.11.0',
+        'continuous_vector', (1, architecture(options)['response_width']), '0.11.1', 'release-0.11.1',
         penalty_input_domain='continuous', base_precisions=('float32', 'bfloat16'),
         qualification='Scoped initialization; native CPU/pretrained/finished-text quality pending')
 
