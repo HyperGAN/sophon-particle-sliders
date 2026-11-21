@@ -9,7 +9,7 @@ description = "Sophon Realtime v1 thinker responses over the shared Particle Sli
 readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
-dependencies = ["particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78#subdirectory=packages/particle-sliders-core"]
+dependencies = ["particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@ec1161f5d74481be3540cb0dfa63d0e8f8b54e90#subdirectory=packages/particle-sliders-core"]
 
 [project.optional-dependencies]
 native = ["transformers>=4.51,<5.20", "peft>=0.20,<0.21", "accelerate>=1.4,<2", "librosa", "soundfile", "safetensors>=0.4,<1"]

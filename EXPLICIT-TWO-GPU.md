@@ -1,6 +1,6 @@
 # Explicit owned two-GPU Sophon cohort
 
-`sophon_explicit_twogpu` is the explicit two-device thinker backend. It uses core 0.15.1 and ParticleGAN 0.11.0. Use the original revisions for saved FULL and RAW packets from previous cohorts.
+`sophon_explicit_twogpu` is the explicit two-device thinker backend. It uses core 0.15.2 and ParticleGAN 0.11.1. Use the original revisions for saved FULL and RAW packets from previous cohorts.
 
 The immutable official thinker/audio/tag implementation remains67fe6cf; weights remain original full local `base/` plus frozen active/unmerged `adapters/tag`. No ASR, hidden projection, quantization, offload, reduced response, automatic/balanced device map, EMA or changed PG penalty is introduced.
 
@@ -25,7 +25,7 @@ config = SessionConfig('sophon_explicit_twogpu', 'unique-new-fresh-cohort',
     model_dir='/exact/verified/original/model', source_dir='/exact/67fe/official/source',
     training_file='/exact/matched-native-audio-text.jsonl', device='cuda:1', placement=deepcopy(PLAN),
     base_precision='bfloat16', response_width=5120, rank=8, particles=128, particle_dim=4,
-    pg_version='0.11.0', pg_source_profile='release-0.11.0', penalty_input_domain='continuous',
+    pg_version='0.11.1', pg_source_profile='release-0.11.1', penalty_input_domain='continuous',
     source_profile=SOURCE_PROFILE, initialization_policy=INITIALIZATION_POLICY,
     ema_decay=None, steps=2, batch=2, seed=7,
     lr=.012, d_lr_mult=1.5, prior_lr_mult=2.5)
@@ -40,7 +40,7 @@ with open_training(config, admission=owner, resume=full) as resumed:
 with open_inference(raw, admission=owner,
         options=dict(model_dir=config.options['model_dir'], source_dir=config.options['source_dir'],
                      device='cuda:1', placement=deepcopy(PLAN)), operation='render') as inference:
-    # See existing CURRENT-PG095 for exact packed prompt/ChatML audio inputs.
+    # See CURRENT.md for exact packed prompt/ChatML audio inputs.
     output = inference.render(messages=actual_tagged_messages, audios=actual_audio_paths,
                               max_new_tokens=64, strength=1., seed=7)
     output.save('/fresh/finished.txt')
@@ -56,6 +56,6 @@ CPU fixtures do not establish real two-GPU dispatch, full32B fit, pretrained upd
 
 ## Actual tiny CPU qualification
 
-Six distinct checks now pass with the same native runtime code. The first run retained four passes and two fixture failures; only the two corrected cases were executed again and both passed. The fixes preserve literal floating-point rate multiplication and supply the same official source identity as the real loader. No prior passing case or original nine-check suite was replayed. See [the portable receipt](evidence/explicit-two-gpu-native95-CPU-qualification.json).
+Six distinct checks now pass with the same native runtime code. The first run retained four passes and two fixture failures; only the two corrected cases were executed again and both passed. The fixes preserve literal floating-point rate multiplication and supply the same official source identity as the real loader. No prior passing case or original nine-check suite was replayed. See [the portable receipt](https://github.com/HyperGAN/sophon-particle-sliders/blob/9c6ca508c8fb66cac9fc07263e87199d4a98e844/evidence/explicit-two-gpu-native95-CPU-qualification.json).
 
 This establishes tiny CPU software conformance only. Actual two-GPU dispatch, full32B fit and pretrained training/output/LR measurements remain unqualified until model staging and a genuine owned execution complete.
