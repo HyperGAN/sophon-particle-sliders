@@ -1,5 +1,6 @@
 """Small synthetic contract host; explicitly not pretrained Sophon."""
 
+import os
 from types import SimpleNamespace
 
 import pytest
@@ -8,6 +9,14 @@ from torch import nn
 
 from sophon_particle_sliders.response import SophonResponse, SpeechRow
 from sophon_particle_sliders.slider import SophonSlider
+
+
+@pytest.fixture
+def steering_wheel():
+    wheel = os.environ.get("SOPHON_STEERING_WHEEL")
+    if not wheel:
+        pytest.skip("set SOPHON_STEERING_WHEEL to the wheel built at shared core PR #269")
+    return wheel
 
 
 class TaggedLinear(nn.Module):

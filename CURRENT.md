@@ -154,3 +154,47 @@ gradients/processor/generation; and local-random tag loading in both precisions.
 The old 14-check cohort is retained separately and is not relabelled as this run.
 
 Primary generation source: [official pinned thinker](https://github.com/adventists-ai/sophon-realtime/blob/67fe6cfc02616cec5a5a883b063bdefd7b31fc2b/finetune/sophon_swift/modeling_duplexjev.py).
+
+### Activation-dependent tagged text
+
+Use `sophon_particle_sliders.scheduled_text.render_adaptive` with a
+`GatePlan` from `sophon_particle_sliders.activation_gate`. Select
+`TAGGED_TEXT_SIGNAL`. The gate reads the last position of the layer-0
+decoder input after the native audio merge and before any routed projection.
+It decides once for each output prediction, starting at the final prompt
+position. Earlier prompt positions stay at zero RAW strength. Full-prefix
+calls replay the decision for each old position and retain the frozen tag
+adapter. Returned text and its sidecar still include native EOS.
+
+Pass the `particle_sliders_core` wheel built at the shared steering revision
+as `core_wheel`. The helper checks the exact steering module bytes and
+leaves the installed checkpoint owner in place. For CFP or CLABS, provide a
+unit `direction` fitted on this signal, the measured CFP threshold or CLABS
+bias as `parameter`, and the `calibration_sha256` of the source record.
+Pass the CLABS statistics and controller parameters as a `clabs` dictionary,
+plus an explicit gate `seed`. The matched random control uses the calibrated
+rate and an explicit seed. These methods allocate edits from the saved RAW
+adapter at the requested `strength`. [Shared equations and calibration](https://github.com/HyperGAN/particle-sliders/blob/b1f780decc516808cfd3019d5e5b674457161f86/docs/strength-schedules.md#activation-dependent-steering) · [Shared source PR](https://github.com/HyperGAN/particle-sliders/pull/269).
+
+```python
+from sophon_particle_sliders.activation_gate import GatePlan, TAGGED_TEXT_SIGNAL
+from sophon_particle_sliders.scheduled_text import render_adaptive
+
+plan = GatePlan(
+    core_wheel=steering_wheel,
+    signal=TAGGED_TEXT_SIGNAL,
+    method="cfp",
+    parameter=calibrated_threshold,
+    direction=fitted_direction,
+    calibration_sha256=calibration_record_sha256,
+)
+result = render_adaptive(session, gate_plan=plan, strength=calibrated_strength,
+                         messages=messages, audios=audio_paths)
+```
+
+The sidecar records the direction, controller inputs, decisions and realized
+firing rate. Reproduce those positions with fixed `render`, `context_gain=0`
+and gains of 0 or 1 from the trace. Supply one gain per possible output token.
+Product-specific fitting, calibration and held-out tagged-text effect remain
+unmeasured. Set `SOPHON_STEERING_WHEEL` to the same verified wheel alongside
+`SOPHON_SOURCE` to exercise the adaptive native CPU fixture.
