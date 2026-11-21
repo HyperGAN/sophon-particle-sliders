@@ -192,3 +192,36 @@ receipt = render(session, text=text, seed=7, strength=0.5,
 The original renderer saves the native audio and a separate
 `scheduled-strength.json` records the applied strengths. The new scope passed
 a CPU acoustic-event fixture. A matched native speech comparison is pending.
+
+### Activation-dependent acoustic strength
+
+Call `sophon_speech.scheduled_audio.render_adaptive` with a
+`GatePlan` for `SPEECH_SIGNAL` and the usual render arguments. Use the same
+verified shared core wheel and calibration fields as the tagged-text path,
+with a direction fitted on the native 5120-wide acoustic input. The native
+talker chooses a KF frame first. The gate then reads its live input to
+`reg` before the saved RAW edit and decides the strength for that frame.
+Read events, the stop event and waveform decoding add no gate decisions.
+The decoder and native EOS path are the same as for fixed gains. [Gate plan and shared equations](CURRENT.md#activation-dependent-tagged-text).
+
+```python
+from sophon_particle_sliders.activation_gate import GatePlan, SPEECH_SIGNAL
+from sophon_speech.scheduled_audio import render_adaptive
+
+plan = GatePlan(
+    core_wheel=steering_wheel,
+    signal=SPEECH_SIGNAL,
+    method="cfp",
+    parameter=calibrated_threshold,
+    direction=fitted_kf_direction,
+    calibration_sha256=calibration_record_sha256,
+)
+receipt = render_adaptive(session, text=text, seed=seed, strength=calibrated_strength,
+                          gate_plan=plan, durable_directory=destination)
+```
+
+`scheduled-strength.json` records each frame's decision, effective strength
+and realized firing rate. Replay with the fixed renderer using gains of 0 or 1
+from the trace. Capture paired native KF inputs for the intended trait and
+use separate active calibration cases before evaluating on fresh utterances.
+Product-specific fitting, calibration and finished-audio gains remain unmeasured.
