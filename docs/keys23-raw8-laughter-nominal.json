@@ -1,0 +1,43 @@
+{
+  "schema": "sophon-keys23-raw8-fixed-strength-qualification-v1",
+  "scope": "One matched native English speech utterance and seed",
+  "raw_sha256": "61e8dc978f7219436be0db43929c3bfbc6a86963e03ca556361af058d285bab4",
+  "weights": "raw",
+  "ema_decay": null,
+  "case_seed": 23,
+  "sample_rate_Hz": 24000,
+  "native_KF_frames_per_arm": 22,
+  "PCM16_samples_per_arm": 84480,
+  "effect_metric": "Native laughter intensity ON minus the same strict OFF",
+  "strict_OFF": {
+    "wav_sha256": "7732d9a9dca4e378cc62ea88fbc6d982426183b30dd1f11b83d220eaa21678a5",
+    "intensity": 0.00013120331277605146,
+    "integrity": "pass"
+  },
+  "fixed_comparisons": [
+    {
+      "strength": 0.5,
+      "wav_sha256": "a90d3a6f4b1acb8f1a70e2a93dce4b40293b5086ab7a2d87d1371d8a51c334f0",
+      "intensity": 0.00010468624532222748,
+      "ON_minus_OFF": -2.6517067453823984e-05,
+      "integrity": "pass"
+    },
+    {
+      "strength": 1.0,
+      "wav_sha256": "b48127f2161ae3a98451fc9709b167fa33caa826165a6aff36d37d20beeece91",
+      "intensity": 6.61280719214119e-05,
+      "ON_minus_OFF": -6.507524085463956e-05,
+      "integrity": "pass"
+    }
+  ],
+  "qualified_nominal_strength": null,
+  "adaptive_timing_gain": null,
+  "fitted_gate_calibration_calls": 0,
+  "adaptive_heldout_calls": 0,
+  "provenance": {
+    "half_strength_independent_audit_sha256": "455e6e95234896294211e04b72a341d4c038ce4d4aa667a189572601d8cb11ea",
+    "full_strength_independent_audit_sha256": "8c7056e3abed0792482114ad3c0b12f43e44a2492cd41772e686433c1f77e9b2",
+    "full_native_EOS_sha256": "ef35aa227974652735572bdf8de85d7e43f3f09838510e4b698c6885253d659b",
+    "fixed_full_result_sha256": "bf0c86360d6688dc82eed802209b1e712a9ef8d90c26e4b38967a681aafa167c"
+  }
+}
