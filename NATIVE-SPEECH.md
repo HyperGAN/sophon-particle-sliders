@@ -224,4 +224,10 @@ receipt = render_adaptive(session, text=text, seed=seed, strength=calibrated_str
 and realized firing rate. Replay with the fixed renderer using gains of 0 or 1
 from the trace. Capture paired native KF inputs for the intended trait and
 use separate active calibration cases before evaluating on fresh utterances.
-Product-specific fitting, calibration and finished-audio gains remain unmeasured.
+
+The Keys23 RAW8 nominal study compared strengths 0.5 and 1 against the same
+strict OFF recording. All three clips reached native EOS at 24 kHz and passed
+speech integrity. Laughter intensity changed by −0.00002652 at strength 0.5
+and −0.00006508 at strength 1. Both strengths missed nominal qualification.
+Calibration and held-out timing gain for this profile remain unmeasured.
+[Measured native endpoints](docs/keys23-raw8-laughter-nominal.json).
