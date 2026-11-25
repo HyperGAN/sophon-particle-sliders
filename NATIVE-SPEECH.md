@@ -225,6 +225,42 @@ and realized firing rate. Replay with the fixed renderer using gains of 0 or 1
 from the trace. Capture paired native KF inputs for the intended trait and
 use separate active calibration cases before evaluating on fresh utterances.
 
+### FP32 dose-matched acoustic controls
+
+Use the combined receipt returned by the scheduled renderer. Both the adaptive
+schedule and the fixed control must finish with nonempty native KF frames and
+clean EOS. Supply a wheel built from the shared
+[core PR #338](https://github.com/HyperGAN/particle-sliders/pull/338) or
+[PR #339](https://github.com/HyperGAN/particle-sliders/pull/339), which contain the
+same verified strength scheduler. This wheel is read separately from the
+steering wheel and the installed native core.
+
+```python
+from sophon_speech.acoustic_dose import propose_constant_control, verify_constant_control
+from sophon_speech.scheduled_audio import render
+
+proposal = propose_constant_control(adaptive_receipt, core_wheel=dose_wheel)
+fixed_receipt = render(session, text=text, seed=seed, strength=proposal.constant_strength,
+                       frame_gains=[1.0], durable_directory=control_destination)
+result = verify_constant_control(adaptive_receipt, fixed_receipt,
+                                 proposal=proposal, core_wheel=dose_wheel)
+```
+
+The proposal initially assumes the adaptive KF frame count. The comparison
+uses the fixed control's actual EOS frame count. If it changes,
+`result.clock_changed` requires re-evaluating the control with
+`result.actual_clock_proposal` before calling it matched. Each receipt has one
+FP32 coefficient per KF frame. The result exposes both coefficient sequences
+and the exact signed dose difference (fixed minus adaptive) as a `Fraction`.
+`result.matched` requires an exact zero residual. `result.qualified_nearest`
+accepts the nearest applied coefficient on the proposal’s clock and
+can have a rounding residual. If the constant clock is too short to deliver
+the adaptive dose even at strength 1, the proposal flags `saturated` and the
+comparison cannot qualify. The evaluator verifies paired request, seed, RAW
+checkpoint and observer integrity separately from the coefficient and clock
+checks. Native tensor rounding and finished speech effect require their own
+measurements.
+
 The Keys23 RAW8 nominal study compared strengths 0.5 and 1 against the same
 strict OFF recording. All three clips reached native EOS at 24 kHz and passed
 speech integrity. Laughter intensity changed by −0.00002652 at strength 0.5
